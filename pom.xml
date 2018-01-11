@@ -12,6 +12,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <org.spring.version>4.3.13.RELEASE</org.spring.version>
+    <org.log4j2.version>2.9.1</org.log4j2.version>
   </properties>
 
   <dependencies>
@@ -53,6 +54,28 @@
       <artifactId>mysql-connector-java</artifactId>
       <version>5.1.45</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
+    <dependency>
+      <groupId>commons-codec</groupId>
+      <artifactId>commons-codec</artifactId>
+      <version>1.11</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-api</artifactId>
+      <version>${org.log4j2.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <version>${org.log4j2.version}</version>
+    </dependency>
+    <dependency>
+       <groupId>org.apache.logging.log4j</groupId>
+       <artifactId>log4j-web</artifactId>
+       <version>${org.log4j2.version}</version>
+   </dependency>
 
     <dependency>
       <groupId>junit</groupId>
