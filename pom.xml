@@ -88,11 +88,13 @@
   <build>
     <finalName>v17</finalName>
     <plugins>
+
       <plugin>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-maven-plugin</artifactId>
         <version>9.2.1.v20140609</version>
       </plugin>
+
       <plugin>
         <groupId>org.mybatis.generator</groupId>
         <artifactId>mybatis-generator-maven-plugin</artifactId>
@@ -102,14 +104,33 @@
           <overwrite>true</overwrite>
         </configuration>
       </plugin>
+
       <plugin>
-		<groupId>org.apache.maven.plugins</groupId>
-		<artifactId>maven-war-plugin</artifactId>
-		<version>2.3</version>
-		<configuration>
-			<warName>v17</warName>
-		</configuration>
-		</plugin>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>3.0.2</version>
+        <executions>
+          <execution>
+            <id>copy-resources</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${basedir}/target/classes/com/xiongmengyingshi/v17/mapper</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>src/main/java/com/xiongmengyingshi/v17/mapper</directory>
+                  <includes>
+                    <include>*.xml</include>
+                  </includes>
+                  <filtering>true</filtering>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
     </plugins>
   </build>
 
