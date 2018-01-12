@@ -23,7 +23,7 @@ public class TestController {
         System.out.println("=============Hello World!==============");
 
         Admin admin = new Admin();
-        admin.setAdminName("admin");
+        admin.setAdminName("adminq");
         admin.setAdminPassword("123123123");
         admin.setPasswordSalt("123");
         admin.setLoginTime(new Date());
@@ -31,7 +31,10 @@ public class TestController {
 
         System.out.println(admin.toString());
 
-        adminService.saveAdmin(admin);
+//        adminService.saveAdmin(admin);
+
+        Admin s = adminService.selectByPrimaryKey(1L);
+        System.out.println(s.toString());
 
         return "HelloWorld";
     }

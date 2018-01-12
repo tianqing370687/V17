@@ -1,37 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="WARN">
-    <!-- 变量配置 -->
-    <Properties>
-        <Property name="log_path">${sys:catalina.home}/logs/zcrTest/</Property>
-    </Properties>
 
-    <!-- appender配置 -->
-    <Appenders>
+<configuration status="error">
+    <!--先定义所有的appender -->
+    <appenders>
+        <!--这个输出控制台的配置 -->
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="[%d][%t][%p][%c:%L] %m%n" />
+            <!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch） -->
+            <ThresholdFilter level="trace" onMatch="ACCEPT"
+                             onMismatch="DENY" />
+            <!--这个都知道是输出日志的格式 -->
+            <PatternLayout pattern="%d{HH:mm:ss.SSS}[%level](%F:%L) - %msg%xEx%n" />
         </Console>
-        <RollingFile name="DailyRollingFile" fileName="${log_path}/zcrTest.log"
-                     filePattern="${log_path}/zcrTest%d{yyyy-MM-dd}.log">
-            <PatternLayout pattern="[%d][%t][%p][%c:%L] %m%n" />
-            <TimeBasedTriggeringPolicy  interval="1"/>
-　　　　　　　<SizeBasedTriggeringPolicy size="10 MB" />
+        <!--文件会打印出所有信息，这个log每次运行程序会自动清空，由append属性决定，这个也挺有用的，适合临时测试用 -->
+        <File name="LogFile" fileName="/srv/logs/exchangeserver_dev.log"
+              append="false">
+            <PatternLayout
+                    pattern="%d{HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n" />
+        </File>
+
+        <!--这个会打印出所有的信息，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档 -->
+        <RollingFile name="RollingFile" fileName="/srv/logs/server.log"
+                     filePattern="/srv/logs/server.log.%d{yyyy-MM-dd}">
+            <PatternLayout
+                    pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n" />
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true"
+                                           interval="1" />
+            </Policies>
+            <!-- <SizeBasedTriggeringPolicy size="50MB"/> -->
+            <DefaultRolloverStrategy>
+                <Delete basePath="/srv/logs" maxDepth="1">
+                    <IfFileName glob="server.log.*" />
+                    <IfLastModified age="30d" />
+                </Delete>
+            </DefaultRolloverStrategy>
         </RollingFile>
-    </Appenders>
+    </appenders>
+    <!--然后定义logger，只有定义了logger并引入的appender，appender才会生效 -->
+    <loggers>
+        <!--建立一个默认的root的logger -->
+        <root level="info">
+            <appender-ref ref="LogFile" />
+            <appender-ref ref="RollingFile" />
+            <appender-ref ref="Console" />
+        </root>
 
-    <Loggers>
-　　　　<Logger name="mylog" level="trace" additivity="false">
-　　　　　　<AppenderRef ref="DailyRollingFile" />
-　　　　</Logger>
-        <!-- 配置要使用的appender -->
-
-        　　 <!--
-        additivity开启的话，由于这个logger也是满足root的，所以会被打印两遍。
-        不过root logger 的level是error，为什么Bar 里面的trace信息也被打印两遍呢
-        -->
-        <Root level="info">
-            <AppenderRef ref="Console" />
-            <AppenderRef ref="DailyRollingFile"/>
-        </Root>
-    </Loggers>
-
-</Configuration>
+    </loggers>
+</configuration>

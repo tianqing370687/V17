@@ -7,13 +7,13 @@
     <result column="admin_password" jdbcType="VARCHAR" property="adminPassword" />
     <result column="password_salt" jdbcType="CHAR" property="passwordSalt" />
     <result column="login_time" jdbcType="TIMESTAMP" property="loginTime" />
-    <result column="login_ip" jdbcType="VARCHAR" property="loginIp" />
+    <result column="login_ip" jdbcType="VARCHAR" property="loginIP" />
   </resultMap>
   <sql id="Base_Column_List">
     admin_id, admin_name, admin_password, password_salt, login_time, login_ip
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from v17_admin
     where admin_id = #{adminId,jdbcType=BIGINT}
@@ -27,7 +27,7 @@
       password_salt, login_time, login_ip
       )
     values (#{adminName,jdbcType=VARCHAR}, #{adminPassword,jdbcType=VARCHAR},
-      #{passwordSalt,jdbcType=CHAR}, #{loginTime,jdbcType=TIMESTAMP}, #{loginIp,jdbcType=VARCHAR}
+      #{passwordSalt,jdbcType=CHAR}, #{loginTime,jdbcType=TIMESTAMP}, #{loginIP,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.xiongmengyingshi.v17.entity.Admin">

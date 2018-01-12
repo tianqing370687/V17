@@ -8,4 +8,6 @@ import com.xiongmengyingshi.v17.entity.Admin;
 public interface AdminService {
 
     void saveAdmin(Admin admin);
+
+    Admin selectByPrimaryKey(Long adminId);
 }
