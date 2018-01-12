@@ -28,6 +28,11 @@
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+      <version>${org.spring.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
       <artifactId>spring-tx</artifactId>
       <version>${org.spring.version}</version>
     </dependency>
@@ -61,6 +66,12 @@
       <version>1.11</version>
     </dependency>
 
+
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <version>${org.log4j2.version}</version>
+    </dependency>
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-api</artifactId>
@@ -68,14 +79,9 @@
     </dependency>
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-core</artifactId>
+      <artifactId>log4j-web</artifactId>
       <version>${org.log4j2.version}</version>
     </dependency>
-    <dependency>
-       <groupId>org.apache.logging.log4j</groupId>
-       <artifactId>log4j-web</artifactId>
-       <version>${org.log4j2.version}</version>
-   </dependency>
 
     <dependency>
       <groupId>junit</groupId>
@@ -93,6 +99,9 @@
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-maven-plugin</artifactId>
         <version>9.2.1.v20140609</version>
+        <configuration>
+          <war>${project.basedir}/target/v17.war</war>
+        </configuration>
       </plugin>
 
       <plugin>
