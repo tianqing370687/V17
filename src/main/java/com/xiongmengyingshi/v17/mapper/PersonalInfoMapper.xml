@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xiongmengyingshi.v17.dao.PersonalInfoMapper">
+  <resultMap id="BaseResultMap" type="com.xiongmengyingshi.v17.entity.PersonalInfo">
+    <id column="info_id" jdbcType="INTEGER" property="infoId" />
+    <result column="info_name" jdbcType="VARCHAR" property="infoName" />
+    <result column="info_birthday" jdbcType="TIMESTAMP" property="infoBirthday" />
+    <result column="info_age" jdbcType="INTEGER" property="infoAge" />
+    <result column="info_birthplace" jdbcType="VARCHAR" property="infoBirthplace" />
+    <result column="info_residence" jdbcType="VARCHAR" property="infoResidence" />
+    <result column="info_performing_experience" jdbcType="VARCHAR" property="infoPerformingExperience" />
+    <result column="info_family_composition" jdbcType="VARCHAR" property="infoFamilyComposition" />
+    <result column="info_occupation" jdbcType="VARCHAR" property="infoOccupation" />
+    <result column="info_schools_majors" jdbcType="VARCHAR" property="infoSchoolsMajors" />
+    <result column="info_grade" jdbcType="VARCHAR" property="infoGrade" />
+    <result column="info_place_of_study" jdbcType="VARCHAR" property="infoPlaceOfStudy" />
+    <result column="info_phone_num" jdbcType="VARCHAR" property="infoPhoneNum" />
+    <result column="info_qq" jdbcType="INTEGER" property="infoQq" />
+    <result column="info_email" jdbcType="VARCHAR" property="infoEmail" />
+    <result column="info_weibo" jdbcType="VARCHAR" property="infoWeibo" />
+    <result column="info_home_phone" jdbcType="VARCHAR" property="infoHomePhone" />
+    <result column="info_specialty" jdbcType="VARCHAR" property="infoSpecialty" />
+    <result column="info_interest" jdbcType="VARCHAR" property="infoInterest" />
+    <result column="info_awards" jdbcType="VARCHAR" property="infoAwards" />
+    <result column="info_dream" jdbcType="VARCHAR" property="infoDream" />
+    <result column="info_idol" jdbcType="VARCHAR" property="infoIdol" />
+    <result column="info_comic" jdbcType="VARCHAR" property="infoComic" />
+    <result column="info_film_works" jdbcType="VARCHAR" property="infoFilmWorks" />
+    <result column="info_website" jdbcType="VARCHAR" property="infoWebsite" />
+    <result column="info_app" jdbcType="VARCHAR" property="infoApp" />
+    <result column="info_want_to_say" jdbcType="VARCHAR" property="infoWantToSay" />
+    <result column="info_video1_url" jdbcType="VARCHAR" property="infoVideo1Url" />
+    <result column="info_video2_url" jdbcType="VARCHAR" property="infoVideo2Url" />
+    <result column="info_mugshot_img_url" jdbcType="VARCHAR" property="infoMugshotImgUrl" />
+    <result column="info_halflength_img_url" jdbcType="VARCHAR" property="infoHalflengthImgUrl" />
+    <result column="info_fullbody_img_url" jdbcType="VARCHAR" property="infoFullbodyImgUrl" />
+    <result column="info_create_time" jdbcType="TIMESTAMP" property="infoCreateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    info_id, info_name, info_birthday, info_age, info_birthplace, info_residence, info_performing_experience, 
+    info_family_composition, info_occupation, info_schools_majors, info_grade, info_place_of_study, 
+    info_phone_num, info_qq, info_email, info_weibo, info_home_phone, info_specialty, 
+    info_interest, info_awards, info_dream, info_idol, info_comic, info_film_works, info_website, 
+    info_app, info_want_to_say, info_video1_url, info_video2_url, info_mugshot_img_url, 
+    info_halflength_img_url, info_fullbody_img_url, info_create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from v17_personal_info
+    where info_id = #{infoId,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByPhoneNum" parameterType="String" resultType="com.xiongmengyingshi.v17.entity.PersonalInfo">
+    SELECT
+    <include refid="BaseResultMap" />
+    FROM v17_personal_info
+    WHERE info_phone_num = #{infoPhoneNum,jdbcType=VARCHAR}
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from v17_personal_info
+    where info_id = #{infoId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiongmengyingshi.v17.entity.PersonalInfo">
+    insert into v17_personal_info (info_id, info_name, info_birthday, 
+      info_age, info_birthplace, info_residence, 
+      info_performing_experience, info_family_composition, 
+      info_occupation, info_schools_majors, info_grade, 
+      info_place_of_study, info_phone_num, info_qq, 
+      info_email, info_weibo, info_home_phone, 
+      info_specialty, info_interest, info_awards, 
+      info_dream, info_idol, info_comic, 
+      info_film_works, info_website, info_app, 
+      info_want_to_say, info_video1_url, info_video2_url, 
+      info_mugshot_img_url, info_halflength_img_url, 
+      info_fullbody_img_url, info_create_time)
+    values (#{infoId,jdbcType=INTEGER}, #{infoName,jdbcType=VARCHAR}, #{infoBirthday,jdbcType=TIMESTAMP}, 
+      #{infoAge,jdbcType=INTEGER}, #{infoBirthplace,jdbcType=VARCHAR}, #{infoResidence,jdbcType=VARCHAR}, 
+      #{infoPerformingExperience,jdbcType=VARCHAR}, #{infoFamilyComposition,jdbcType=VARCHAR}, 
+      #{infoOccupation,jdbcType=VARCHAR}, #{infoSchoolsMajors,jdbcType=VARCHAR}, #{infoGrade,jdbcType=VARCHAR}, 
+      #{infoPlaceOfStudy,jdbcType=VARCHAR}, #{infoPhoneNum,jdbcType=VARCHAR}, #{infoQq,jdbcType=INTEGER}, 
+      #{infoEmail,jdbcType=VARCHAR}, #{infoWeibo,jdbcType=VARCHAR}, #{infoHomePhone,jdbcType=VARCHAR}, 
+      #{infoSpecialty,jdbcType=VARCHAR}, #{infoInterest,jdbcType=VARCHAR}, #{infoAwards,jdbcType=VARCHAR}, 
+      #{infoDream,jdbcType=VARCHAR}, #{infoIdol,jdbcType=VARCHAR}, #{infoComic,jdbcType=VARCHAR}, 
+      #{infoFilmWorks,jdbcType=VARCHAR}, #{infoWebsite,jdbcType=VARCHAR}, #{infoApp,jdbcType=VARCHAR}, 
+      #{infoWantToSay,jdbcType=VARCHAR}, #{infoVideo1Url,jdbcType=VARCHAR}, #{infoVideo2Url,jdbcType=VARCHAR}, 
+      #{infoMugshotImgUrl,jdbcType=VARCHAR}, #{infoHalflengthImgUrl,jdbcType=VARCHAR}, 
+      #{infoFullbodyImgUrl,jdbcType=VARCHAR}, #{infoCreateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiongmengyingshi.v17.entity.PersonalInfo">
+    insert into v17_personal_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="infoId != null">
+        info_id,
+      </if>
+      <if test="infoName != null">
+        info_name,
+      </if>
+      <if test="infoBirthday != null">
+        info_birthday,
+      </if>
+      <if test="infoAge != null">
+        info_age,
+      </if>
+      <if test="infoBirthplace != null">
+        info_birthplace,
+      </if>
+      <if test="infoResidence != null">
+        info_residence,
+      </if>
+      <if test="infoPerformingExperience != null">
+        info_performing_experience,
+      </if>
+      <if test="infoFamilyComposition != null">
+        info_family_composition,
+      </if>
+      <if test="infoOccupation != null">
+        info_occupation,
+      </if>
+      <if test="infoSchoolsMajors != null">
+        info_schools_majors,
+      </if>
+      <if test="infoGrade != null">
+        info_grade,
+      </if>
+      <if test="infoPlaceOfStudy != null">
+        info_place_of_study,
+      </if>
+      <if test="infoPhoneNum != null">
+        info_phone_num,
+      </if>
+      <if test="infoQq != null">
+        info_qq,
+      </if>
+      <if test="infoEmail != null">
+        info_email,
+      </if>
+      <if test="infoWeibo != null">
+        info_weibo,
+      </if>
+      <if test="infoHomePhone != null">
+        info_home_phone,
+      </if>
+      <if test="infoSpecialty != null">
+        info_specialty,
+      </if>
+      <if test="infoInterest != null">
+        info_interest,
+      </if>
+      <if test="infoAwards != null">
+        info_awards,
+      </if>
+      <if test="infoDream != null">
+        info_dream,
+      </if>
+      <if test="infoIdol != null">
+        info_idol,
+      </if>
+      <if test="infoComic != null">
+        info_comic,
+      </if>
+      <if test="infoFilmWorks != null">
+        info_film_works,
+      </if>
+      <if test="infoWebsite != null">
+        info_website,
+      </if>
+      <if test="infoApp != null">
+        info_app,
+      </if>
+      <if test="infoWantToSay != null">
+        info_want_to_say,
+      </if>
+      <if test="infoVideo1Url != null">
+        info_video1_url,
+      </if>
+      <if test="infoVideo2Url != null">
+        info_video2_url,
+      </if>
+      <if test="infoMugshotImgUrl != null">
+        info_mugshot_img_url,
+      </if>
+      <if test="infoHalflengthImgUrl != null">
+        info_halflength_img_url,
+      </if>
+      <if test="infoFullbodyImgUrl != null">
+        info_fullbody_img_url,
+      </if>
+      <if test="infoCreateTime != null">
+        info_create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="infoId != null">
+        #{infoId,jdbcType=INTEGER},
+      </if>
+      <if test="infoName != null">
+        #{infoName,jdbcType=VARCHAR},
+      </if>
+      <if test="infoBirthday != null">
+        #{infoBirthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="infoAge != null">
+        #{infoAge,jdbcType=INTEGER},
+      </if>
+      <if test="infoBirthplace != null">
+        #{infoBirthplace,jdbcType=VARCHAR},
+      </if>
+      <if test="infoResidence != null">
+        #{infoResidence,jdbcType=VARCHAR},
+      </if>
+      <if test="infoPerformingExperience != null">
+        #{infoPerformingExperience,jdbcType=VARCHAR},
+      </if>
+      <if test="infoFamilyComposition != null">
+        #{infoFamilyComposition,jdbcType=VARCHAR},
+      </if>
+      <if test="infoOccupation != null">
+        #{infoOccupation,jdbcType=VARCHAR},
+      </if>
+      <if test="infoSchoolsMajors != null">
+        #{infoSchoolsMajors,jdbcType=VARCHAR},
+      </if>
+      <if test="infoGrade != null">
+        #{infoGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="infoPlaceOfStudy != null">
+        #{infoPlaceOfStudy,jdbcType=VARCHAR},
+      </if>
+      <if test="infoPhoneNum != null">
+        #{infoPhoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="infoQq != null">
+        #{infoQq,jdbcType=INTEGER},
+      </if>
+      <if test="infoEmail != null">
+        #{infoEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="infoWeibo != null">
+        #{infoWeibo,jdbcType=VARCHAR},
+      </if>
+      <if test="infoHomePhone != null">
+        #{infoHomePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="infoSpecialty != null">
+        #{infoSpecialty,jdbcType=VARCHAR},
+      </if>
+      <if test="infoInterest != null">
+        #{infoInterest,jdbcType=VARCHAR},
+      </if>
+      <if test="infoAwards != null">
+        #{infoAwards,jdbcType=VARCHAR},
+      </if>
+      <if test="infoDream != null">
+        #{infoDream,jdbcType=VARCHAR},
+      </if>
+      <if test="infoIdol != null">
+        #{infoIdol,jdbcType=VARCHAR},
+      </if>
+      <if test="infoComic != null">
+        #{infoComic,jdbcType=VARCHAR},
+      </if>
+      <if test="infoFilmWorks != null">
+        #{infoFilmWorks,jdbcType=VARCHAR},
+      </if>
+      <if test="infoWebsite != null">
+        #{infoWebsite,jdbcType=VARCHAR},
+      </if>
+      <if test="infoApp != null">
+        #{infoApp,jdbcType=VARCHAR},
+      </if>
+      <if test="infoWantToSay != null">
+        #{infoWantToSay,jdbcType=VARCHAR},
+      </if>
+      <if test="infoVideo1Url != null">
+        #{infoVideo1Url,jdbcType=VARCHAR},
+      </if>
+      <if test="infoVideo2Url != null">
+        #{infoVideo2Url,jdbcType=VARCHAR},
+      </if>
+      <if test="infoMugshotImgUrl != null">
+        #{infoMugshotImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="infoHalflengthImgUrl != null">
+        #{infoHalflengthImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="infoFullbodyImgUrl != null">
+        #{infoFullbodyImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="infoCreateTime != null">
+        #{infoCreateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiongmengyingshi.v17.entity.PersonalInfo">
+    update v17_personal_info
+    <set>
+      <if test="infoName != null">
+        info_name = #{infoName,jdbcType=VARCHAR},
+      </if>
+      <if test="infoBirthday != null">
+        info_birthday = #{infoBirthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="infoAge != null">
+        info_age = #{infoAge,jdbcType=INTEGER},
+      </if>
+      <if test="infoBirthplace != null">
+        info_birthplace = #{infoBirthplace,jdbcType=VARCHAR},
+      </if>
+      <if test="infoResidence != null">
+        info_residence = #{infoResidence,jdbcType=VARCHAR},
+      </if>
+      <if test="infoPerformingExperience != null">
+        info_performing_experience = #{infoPerformingExperience,jdbcType=VARCHAR},
+      </if>
+      <if test="infoFamilyComposition != null">
+        info_family_composition = #{infoFamilyComposition,jdbcType=VARCHAR},
+      </if>
+      <if test="infoOccupation != null">
+        info_occupation = #{infoOccupation,jdbcType=VARCHAR},
+      </if>
+      <if test="infoSchoolsMajors != null">
+        info_schools_majors = #{infoSchoolsMajors,jdbcType=VARCHAR},
+      </if>
+      <if test="infoGrade != null">
+        info_grade = #{infoGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="infoPlaceOfStudy != null">
+        info_place_of_study = #{infoPlaceOfStudy,jdbcType=VARCHAR},
+      </if>
+      <if test="infoPhoneNum != null">
+        info_phone_num = #{infoPhoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="infoQq != null">
+        info_qq = #{infoQq,jdbcType=INTEGER},
+      </if>
+      <if test="infoEmail != null">
+        info_email = #{infoEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="infoWeibo != null">
+        info_weibo = #{infoWeibo,jdbcType=VARCHAR},
+      </if>
+      <if test="infoHomePhone != null">
+        info_home_phone = #{infoHomePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="infoSpecialty != null">
+        info_specialty = #{infoSpecialty,jdbcType=VARCHAR},
+      </if>
+      <if test="infoInterest != null">
+        info_interest = #{infoInterest,jdbcType=VARCHAR},
+      </if>
+      <if test="infoAwards != null">
+        info_awards = #{infoAwards,jdbcType=VARCHAR},
+      </if>
+      <if test="infoDream != null">
+        info_dream = #{infoDream,jdbcType=VARCHAR},
+      </if>
+      <if test="infoIdol != null">
+        info_idol = #{infoIdol,jdbcType=VARCHAR},
+      </if>
+      <if test="infoComic != null">
+        info_comic = #{infoComic,jdbcType=VARCHAR},
+      </if>
+      <if test="infoFilmWorks != null">
+        info_film_works = #{infoFilmWorks,jdbcType=VARCHAR},
+      </if>
+      <if test="infoWebsite != null">
+        info_website = #{infoWebsite,jdbcType=VARCHAR},
+      </if>
+      <if test="infoApp != null">
+        info_app = #{infoApp,jdbcType=VARCHAR},
+      </if>
+      <if test="infoWantToSay != null">
+        info_want_to_say = #{infoWantToSay,jdbcType=VARCHAR},
+      </if>
+      <if test="infoVideo1Url != null">
+        info_video1_url = #{infoVideo1Url,jdbcType=VARCHAR},
+      </if>
+      <if test="infoVideo2Url != null">
+        info_video2_url = #{infoVideo2Url,jdbcType=VARCHAR},
+      </if>
+      <if test="infoMugshotImgUrl != null">
+        info_mugshot_img_url = #{infoMugshotImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="infoHalflengthImgUrl != null">
+        info_halflength_img_url = #{infoHalflengthImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="infoFullbodyImgUrl != null">
+        info_fullbody_img_url = #{infoFullbodyImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="infoCreateTime != null">
+        info_create_time = #{infoCreateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where info_id = #{infoId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiongmengyingshi.v17.entity.PersonalInfo">
+    update v17_personal_info
+    set info_name = #{infoName,jdbcType=VARCHAR},
+      info_birthday = #{infoBirthday,jdbcType=TIMESTAMP},
+      info_age = #{infoAge,jdbcType=INTEGER},
+      info_birthplace = #{infoBirthplace,jdbcType=VARCHAR},
+      info_residence = #{infoResidence,jdbcType=VARCHAR},
+      info_performing_experience = #{infoPerformingExperience,jdbcType=VARCHAR},
+      info_family_composition = #{infoFamilyComposition,jdbcType=VARCHAR},
+      info_occupation = #{infoOccupation,jdbcType=VARCHAR},
+      info_schools_majors = #{infoSchoolsMajors,jdbcType=VARCHAR},
+      info_grade = #{infoGrade,jdbcType=VARCHAR},
+      info_place_of_study = #{infoPlaceOfStudy,jdbcType=VARCHAR},
+      info_phone_num = #{infoPhoneNum,jdbcType=VARCHAR},
+      info_qq = #{infoQq,jdbcType=INTEGER},
+      info_email = #{infoEmail,jdbcType=VARCHAR},
+      info_weibo = #{infoWeibo,jdbcType=VARCHAR},
+      info_home_phone = #{infoHomePhone,jdbcType=VARCHAR},
+      info_specialty = #{infoSpecialty,jdbcType=VARCHAR},
+      info_interest = #{infoInterest,jdbcType=VARCHAR},
+      info_awards = #{infoAwards,jdbcType=VARCHAR},
+      info_dream = #{infoDream,jdbcType=VARCHAR},
+      info_idol = #{infoIdol,jdbcType=VARCHAR},
+      info_comic = #{infoComic,jdbcType=VARCHAR},
+      info_film_works = #{infoFilmWorks,jdbcType=VARCHAR},
+      info_website = #{infoWebsite,jdbcType=VARCHAR},
+      info_app = #{infoApp,jdbcType=VARCHAR},
+      info_want_to_say = #{infoWantToSay,jdbcType=VARCHAR},
+      info_video1_url = #{infoVideo1Url,jdbcType=VARCHAR},
+      info_video2_url = #{infoVideo2Url,jdbcType=VARCHAR},
+      info_mugshot_img_url = #{infoMugshotImgUrl,jdbcType=VARCHAR},
+      info_halflength_img_url = #{infoHalflengthImgUrl,jdbcType=VARCHAR},
+      info_fullbody_img_url = #{infoFullbodyImgUrl,jdbcType=VARCHAR},
+      info_create_time = #{infoCreateTime,jdbcType=TIMESTAMP}
+    where info_id = #{infoId,jdbcType=INTEGER}
+  </update>
+</mapper>

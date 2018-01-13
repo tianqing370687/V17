@@ -1,23 +1,27 @@
 package com.xiongmengyingshi.v17.utils;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.URL;
 import java.net.URLConnection;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.TimeZone;
 
 /**
  * Created by nicholas.chi on 2018/1/12.
  */
 public class SMSUtils {
+
+
+    public static final String[] resArr = {"","成功","参数不正确","密钥验证失败",
+            "用户名或密码错误","服务器内部失败","余额不足","内容不符合格式",
+            "频率超限","接口超时","后缀名长度超过限制","其他错误",
+            "签名或内容格式不通过","一个手机号码一天内超过5次","暴力破解被封1小时"};
+
+
     /**
      * 向指定 URL 发送POST方法的请求
      * @param url
@@ -26,7 +30,7 @@ public class SMSUtils {
      *            请求参数，请求参数应该是 name1=value1&name2=value2 的形式。
      * @return 所代表远程资源的响应结果
      */
-    public String sendPost(String url, String param) {
+    public static String sendPost(String url, String param) {
 
         PrintWriter out = null;
         BufferedReader in = null;
@@ -77,134 +81,26 @@ public class SMSUtils {
         return result;
     }
 
-    /**
-     * MD5 加密
-     */
-    private String getMD5Str(String str) {
-        MessageDigest messageDigest = null;
+    public static String senaSMS(String mobile,String smsContent) throws ParseException {
 
-        try {
-            messageDigest = MessageDigest.getInstance("MD5");
+        String username = ResourceUtils.getBundleValue4String("sms.username");
+        String password = ResourceUtils.getBundleValue4String("sms.password");
+        String key = ResourceUtils.getBundleValue4String("sms.key");
 
-            messageDigest.reset();
+        String body = java.net.URLEncoder.encode(smsContent);
+        String suffix = java.net.URLEncoder.encode("V17");
+        String content = body + java.net.URLEncoder.encode("【") + suffix + java.net.URLEncoder.encode("】");
 
-            messageDigest.update(str.getBytes());
-        } catch (NoSuchAlgorithmException e) {
-            System.out.println("NoSuchAlgorithmException caught!");
-            System.exit(-1);
-        }
+        long time = CommonUtils.getGMTTime();//获取格林尼治时间
+        String authkey = CommonUtils.getMD5Str(username+time+ CommonUtils.getMD5Str(password)+key);
 
-        byte[] byteArray = messageDigest.digest();
+        String param = "username="+username+"&time="+time+"&content="+content+"&mobile="+mobile+"&authkey="+authkey;
+        System.out.println("send param is :" + param);
 
-        StringBuffer md5StrBuff = new StringBuffer();
+        String result = sendPost("http://sms.edmcn.cn/api/cm/trigger_mobile.php", param);
+        System.out.println("send sms result : " + result);
 
-        for (int i = 0; i < byteArray.length; i++) {
-            if (Integer.toHexString(0xFF & byteArray[i]).length() == 1)
-                md5StrBuff.append("0").append(Integer.toHexString(0xFF & byteArray[i]));
-            else
-                md5StrBuff.append(Integer.toHexString(0xFF & byteArray[i]));
-        }
-
-        return md5StrBuff.toString();
+        return result;
     }
 
-    private static long GetGMTTime() throws ParseException {
-        final int msInMin = 60000;
-        final int minInHr = 60;
-        Date date = new Date();
-        int Hours, Minutes;
-        DateFormat dateFormat =new SimpleDateFormat("yyyyMMddHHmmss");// DateFormat.getDateTimeInstance(DateFormat.LONG,  DateFormat.LONG);
-        TimeZone zone = dateFormat.getTimeZone();
-        System.out.println("IST Time: " + dateFormat.format(date));
-        Minutes = zone.getOffset(date.getTime()) / msInMin;
-        Hours = Minutes / minInHr;
-        System.out.println("GMT Time" + (Hours >= 0 ? "+" : "") + Hours + ":" + Minutes);
-        zone = zone.getTimeZone("GMT Time" + (Hours >= 0 ? "+" : "") + Hours + ":" + Minutes);
-        dateFormat.setTimeZone(zone);
-
-        String  time = dateFormat.format(date);
-        System.out.println("GMT: " + time);
-
-        long Seconds = 0;
-        try {
-            SimpleDateFormat simpledateformat = new SimpleDateFormat("yyyyMMddHHmmss");
-            Seconds = simpledateformat.parse(time).getTime()/1000;
-            System.out.println(Seconds);
-        } catch (ParseException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }//毫秒
-
-
-        return Seconds;
-    }
-
-    public static void main(String[] args) throws Exception{
-		/*
-		java短信发送示例
-		注意：
-		1.此接口支持通知类和注册类短信，谢绝一切营销类推广
-		2.短信内容总字数超过65个字则扣除2条短信的余额
-
-		短信内容收不到由如下原因引起：
-		1.短信信号不好
-		2.手机欠费
-		3.一个手机号在一小时内收到超过8封信
-		4.发送内容不符合接口规定
-		5.手机装有手机卫士之类拒收或在被拦截名单中
-		6.手机死机
-		*/
-
-		/*-------------请填写以下信息------------*/
-        String username = "";//用户名
-        String password = "";//密码
-        String key = "";//key
-        String mobile = "";//电话号码
-        String body = java.net.URLEncoder.encode("祝你生日快乐");//测试时尽量用祝福语
-        String suffix = java.net.URLEncoder.encode("您的公司简称");//在3-8个字内
-		/*-------------请填写以下信息------------*/
-
-        String content = body + java.net.URLEncoder.encode("【") + suffix + java.net.URLEncoder.encode("】");//get content
-        SMSUtils test = new SMSUtils();
-
-        long time = GetGMTTime();//获取格林尼治时间
-        String authkey = test.getMD5Str(username+time+ test.getMD5Str(password)+key);//生成authkey
-        String para = "username="+username+"&time="+time+"&content="+content+"&mobile="+mobile+"&authkey="+authkey;//生成参数
-
-        //post逻辑
-        String respost = test.sendPost("http://sms.edmcn.cn/api/cm/trigger_mobile.php", para);
-        System.out.println(respost);
-        switch (Integer.parseInt(respost)){
-            case 1:
-                System.out.println("成功");
-                break;
-            case 2:
-                System.out.println("参数不正确");
-                break;
-            case 3:
-                System.out.print("密钥验证失败");
-                break;
-            case 4:
-                System.out.print("用户名或密码错误");
-                break;
-            case 5:
-                System.out.print("服务器内部失败");
-                break;
-            case 6:
-                System.out.print("余额不足");
-                break;
-            case 7:
-                System.out.print("内容不符合格式");
-                break;
-            case 8:
-                System.out.print("频率超限");
-                break;
-            case 9:
-                System.out.print("接口超时");
-                break;
-            case 10:
-                System.out.print("后缀签名长度超过限制");
-                break;
-        }
-    }
 }

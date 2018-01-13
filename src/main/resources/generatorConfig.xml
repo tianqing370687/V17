@@ -26,23 +26,23 @@
         </javaTypeResolver>
 
         <!-- 数据表对应的model层  -->
-        <javaModelGenerator targetPackage="com.xiongmengyingshi.v17.entity" targetProject="src">
+        <javaModelGenerator targetPackage="src.main.java.com.xiongmengyingshi.v17.entity" targetProject="src">
             <property name="enableSubPackages" value="true" />
             <property name="trimStrings" value="true" />
         </javaModelGenerator>
 
         <!-- sql mapper 映射配置文件 -->
-        <sqlMapGenerator targetPackage="com.xiongmengyingshi.v17.mapper"  targetProject="src">
+        <sqlMapGenerator targetPackage="src.main.java.com.xiongmengyingshi.v17.mapper"  targetProject="src">
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
 
         <!-- mybatis3中的mapper接口 -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.xiongmengyingshi.v17.dao"  targetProject="src">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="src.main.java.com.xiongmengyingshi.v17.dao"  targetProject="src">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
         <!-- 数据表进行生成操作 schema:相当于库名; tableName:表名; domainObjectName:对应的DO -->
-        <table schema="v17" tableName="v17_admin" domainObjectName="Admin"
+        <table schema="v17" tableName="v17_personal_info" domainObjectName="PersonalInfo"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
