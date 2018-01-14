@@ -12,5 +12,12 @@
 </head>
 <body>
     <h1>Hello World!</h1>
+
+    <form action="/v17/testUpload" method="post" enctype="multipart/form-data">
+        Img : <input type="file" name="image" >
+        <input type="submit" value="submit">
+    </form>
+
+
 </body>
 </html>

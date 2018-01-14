@@ -1,7 +1,5 @@
 package com.xiongmengyingshi.v17.utils;
 
-import org.apache.commons.lang3.RandomUtils;
-
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
@@ -81,8 +79,34 @@ public class CommonUtils {
         return Double.toString(random).substring(0,length-1);
     }
 
+    public static String strFormat(String param,int length){
+        if(param.length() >= length){
+            return null;
+        }
+        String str1 = reverse(param);
+        for (int i = 1;i<=length - param.length();i++){
+            str1 = str1 + "0";
+        }
+
+        return reverse(str1);
+    }
+
+    public static String reverse(String input){
+        StringBuffer sb = new StringBuffer();
+        char[] arr = input.toCharArray();
+
+        for (int i = arr.length-1; i>=0; i--){
+            sb.append(arr[i]);
+        }
+
+        return sb.toString();
+    }
+
     public static void main(String[] args){
-        System.out.println(getRandomCode(6));
+
+//        System.out.println(getRandomCode(6));
+
+        System.out.println(reverse("12345"));
     }
 
 }

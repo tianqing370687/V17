@@ -22,6 +22,25 @@ public class ErrCodeConstant {
     * */
     public static final String TEST_CODE_SUCCESS = "1003";
 
+    /*
+    * 验证码验证成功
+    * */
+    public static final String ogin_success = "2000";
+    /*
+    * 验证码验证成功
+    * */
+    public static final String login_fail_wrong_username = "2001";
+    /*
+    * 验证码验证成功
+    * */
+    public static final String login_fail_wrong_password = "2002";
+
+    public static final String change_password_success = "2003";
+
+    public static final String change_password_fail = "2004";
+
+
+
 
 
 

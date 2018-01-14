@@ -12,6 +12,9 @@
 
     <!-- 处理对静态资源的请求 -->
     <!--<mvc:resources location="/" mapping="/resources/**" />-->
+    <mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/"/>
+    <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
+
 
     <!-- 添加注解驱动 -->
     <mvc:annotation-driven />
@@ -26,12 +29,21 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
-    <!--&lt;!&ndash; 文件上传 &ndash;&gt;-->
-    <!--<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">-->
-        <!--&lt;!&ndash; 设置上传文件的最大尺寸为5MB &ndash;&gt;-->
-        <!--<property name="maxUploadSize">-->
-            <!--<value>5242880</value>-->
-        <!--</property>-->
-    <!--</bean>-->
+    <!-- 文件上传 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 设置上传文件的最大尺寸为5MB -->
+        <property name="maxUploadSize">
+            <value>5242880</value>
+        </property>
+    </bean>
+
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/crm/**"/>
+            <bean class="com.xiongmengyingshi.v17.interceptor.LoginInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <bean class="com.xiongmengyingshi.v17.config.SwaggerConfig"></bean>
 
 </beans>

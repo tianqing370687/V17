@@ -1,18 +1,25 @@
 package com.xiongmengyingshi.v17.controller;
 
+import com.xiongmengyingshi.v17.constant.ServerCodeConstant;
 import com.xiongmengyingshi.v17.controller.form.EnrollInfoForm;
 import com.xiongmengyingshi.v17.entity.PersonalInfo;
 import com.xiongmengyingshi.v17.service.PersonalInfoService;
 import com.xiongmengyingshi.v17.service.VerificationCodeService;
+import com.xiongmengyingshi.v17.utils.CommonUtils;
+import com.xiongmengyingshi.v17.utils.FileUtils;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.io.IOException;
+import java.math.BigInteger;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -27,7 +34,7 @@ public class EnrollController {
     @Autowired
     VerificationCodeService verificationCodeService;
 
-    Logger logger = LogManager.getLogger(EnrollController.class);
+    private static Logger logger = LogManager.getLogger(EnrollController.class);
 
     @RequestMapping(value = "/getVerificationCode",method = RequestMethod.POST)
     public @ResponseBody String getVerificationCode(String phoneNum){
@@ -35,10 +42,12 @@ public class EnrollController {
         return retCode;
     }
 
+    @ApiOperation(value = "获取用户详细信息", notes = "根据url的id来获取用户详细信息")
+    @ApiImplicitParam(name = "phoneNum", value = "用户", required = true, dataType = "Long")
     @RequestMapping(value = "/resendCode",method = RequestMethod.POST)
     public @ResponseBody String resendCode(String phoneNum){
         String retCode = verificationCodeService.getVerificationCode(phoneNum);
-        return null;
+        return retCode;
     }
 
     @RequestMapping(value = "/testCode",method = RequestMethod.POST)
@@ -82,12 +91,29 @@ public class EnrollController {
         personalInfoService.savePersonalInfo(personalInfo);
 
         //查询id
+        BigInteger userId = new BigInteger("1");
 
         //存储video，pic
+        try {
+            String video1Url = FileUtils.uploadFile(
+                    ServerCodeConstant.upload_file_type_video1,userId,form.getVideo1());
+            String video2Url = FileUtils.uploadFile(
+                    ServerCodeConstant.upload_file_type_video2,userId,form.getVideo2());
+            String mugShotImgUrl = FileUtils.uploadFile(
+                    ServerCodeConstant.upload_file_type_mugShot,userId,form.getMugShotImg());
+            String halfLengthImgUrl = FileUtils.uploadFile(
+                    ServerCodeConstant.upload_file_type_halfLength,userId,form.getHalfLengthImg());
+            String fullBodyImgUrl = FileUtils.uploadFile(
+                    ServerCodeConstant.upload_file_type_fullBody,userId,form.getFullBodyImg());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         //update表信息
 
         //返回结果
+        String serialNum = new SimpleDateFormat("yyMMddHHmmss").format(new Date())
+                +CommonUtils.strFormat(userId+"",6);
 
     }
 }
