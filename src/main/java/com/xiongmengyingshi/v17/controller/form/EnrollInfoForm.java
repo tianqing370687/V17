@@ -33,11 +33,11 @@ public class EnrollInfoForm {
     private String website;
     private String app;
     private String wantToSay;
-    private MultipartFile video1;
-    private MultipartFile video2;
-    private MultipartFile mugShotImg;
-    private MultipartFile halfLengthImg;
-    private MultipartFile fullBodyImg;
+//    private MultipartFile video1;
+//    private MultipartFile video2;
+//    private MultipartFile mugShotImg;
+//    private MultipartFile halfLengthImg;
+//    private MultipartFile fullBodyImg;
 //    private Date createTime;
 
     public String getName() {
@@ -249,45 +249,45 @@ public class EnrollInfoForm {
     }
 
 
-    public MultipartFile getVideo1() {
-        return video1;
-    }
+//    public MultipartFile getVideo1() {
+//        return video1;
+//    }
+//
+//    public void setVideo1(MultipartFile video1) {
+//        this.video1 = video1;
+//    }
 
-    public void setVideo1(MultipartFile video1) {
-        this.video1 = video1;
-    }
-
-    public MultipartFile getVideo2() {
-        return video2;
-    }
-
-    public void setVideo2(MultipartFile video2) {
-        this.video2 = video2;
-    }
-
-    public MultipartFile getMugShotImg() {
-        return mugShotImg;
-    }
-
-    public void setMugShotImg(MultipartFile mugShotImg) {
-        this.mugShotImg = mugShotImg;
-    }
-
-    public MultipartFile getHalfLengthImg() {
-        return halfLengthImg;
-    }
-
-    public void setHalfLengthImg(MultipartFile halfLengthImg) {
-        this.halfLengthImg = halfLengthImg;
-    }
-
-    public MultipartFile getFullBodyImg() {
-        return fullBodyImg;
-    }
-
-    public void setFullBodyImg(MultipartFile fullBodyImg) {
-        this.fullBodyImg = fullBodyImg;
-    }
+//    public MultipartFile getVideo2() {
+//        return video2;
+//    }
+//
+//    public void setVideo2(MultipartFile video2) {
+//        this.video2 = video2;
+//    }
+//
+//    public MultipartFile getMugShotImg() {
+//        return mugShotImg;
+//    }
+//
+//    public void setMugShotImg(MultipartFile mugShotImg) {
+//        this.mugShotImg = mugShotImg;
+//    }
+//
+//    public MultipartFile getHalfLengthImg() {
+//        return halfLengthImg;
+//    }
+//
+//    public void setHalfLengthImg(MultipartFile halfLengthImg) {
+//        this.halfLengthImg = halfLengthImg;
+//    }
+//
+//    public MultipartFile getFullBodyImg() {
+//        return fullBodyImg;
+//    }
+//
+//    public void setFullBodyImg(MultipartFile fullBodyImg) {
+//        this.fullBodyImg = fullBodyImg;
+//    }
 
 
 

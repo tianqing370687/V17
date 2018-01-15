@@ -1,20 +1,18 @@
 package com.xiongmengyingshi.v17.session;
 
-import java.math.BigInteger;
-
 /**
  * Created by ubuntu on 18-1-14.
  */
 public class UserSession {
 
-    private BigInteger adminId;
+    private long adminId;
     private String adminName;
 
-    public BigInteger getAdminId() {
+    public long getAdminId() {
         return adminId;
     }
 
-    public void setAdminId(BigInteger adminId) {
+    public void setAdminId(long adminId) {
         this.adminId = adminId;
     }
 

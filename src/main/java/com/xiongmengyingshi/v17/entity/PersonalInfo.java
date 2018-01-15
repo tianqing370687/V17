@@ -33,6 +33,7 @@ public class PersonalInfo {
     private String comic;
     private String filmWorks;
     private String website;
+    private String app;
     private String wantToSay;
     private String video1Url;
     private String video2Url;
@@ -241,6 +242,16 @@ public class PersonalInfo {
     public void setWebsite(String website) {
         this.website = website;
     }
+
+
+    public String getApp() {
+        return app;
+    }
+
+    public void setApp(String app) {
+        this.app = app;
+    }
+
 
     public String getWantToSay() {
         return wantToSay;

@@ -18,8 +18,8 @@ public class FileUtils {
 
     private static Logger logger = LogManager.getLogger(EnrollController.class);
 
-    public static String uploadFile(String type, BigInteger infoId, MultipartFile file) throws IOException {
-        if(file.isEmpty()){
+    public static String uploadFile(String type, long infoId, MultipartFile file) throws IOException {
+        if(file == null ||file.isEmpty()){
             logger.info("the uploadfile is empty!");
             return null;
         }
@@ -38,7 +38,7 @@ public class FileUtils {
         return path;
     }
 
-    private static String getFileName(String originalFilename, BigInteger infoId){
+    private static String getFileName(String originalFilename, long infoId){
         String suffix = originalFilename.substring(originalFilename.lastIndexOf(".") + 1);
         String fileName = (new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()))+infoId+"."+suffix;
         logger.info("the name of the upload file is {}",fileName);

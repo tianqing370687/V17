@@ -34,6 +34,7 @@ public class VerificationCodeServiceImpl implements VerificationCodeService {
         String verificationCode = CommonUtils.getRandomCode(6);
         VerificationCode code = verificationCodeMapper.selectByPrimaryKey(phoneNum);
         if(code == null){
+            code = new VerificationCode();
             code.setPhoneNum(phoneNum);
             code.setVerificationCode(verificationCode);
             logger.info("VerificationCode : {}",code.toString());

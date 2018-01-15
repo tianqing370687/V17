@@ -1,8 +1,14 @@
 package com.xiongmengyingshi.v17.controller;
 
+import com.xiongmengyingshi.v17.constant.ErrCodeConstant;
+import com.xiongmengyingshi.v17.entity.Admin;
+import com.xiongmengyingshi.v17.service.CrmAdminService;
 import com.xiongmengyingshi.v17.session.UserSession;
+import com.xiongmengyingshi.v17.utils.CommonUtils;
+import io.swagger.annotations.ApiOperation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,30 +23,51 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class CrmAdminController {
 
+    @Autowired
+    CrmAdminService crmAdminService;
+
     Logger logger = LogManager.getLogger(EnrollController.class);
 
-    @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public @ResponseBody String login(HttpServletRequest request,
-                                      String adminName, String adminPassword){
-        UserSession session = new UserSession();
-        request.getSession().setAttribute("userSession",session);
-
-        return "HelloWorld";
+    @ResponseBody
+    @ApiOperation(value = "注册", notes = "")
+    @RequestMapping(value = "/register",method = RequestMethod.POST)
+    public String register(HttpServletRequest request,String adminName, String adminPassword){
+        String passwordSalt = CommonUtils.getRandomCode(6);
+        String loginIP = CommonUtils.getIP(request);
+        String retCode = crmAdminService.register(adminName,adminPassword,passwordSalt,loginIP);
+        if(ErrCodeConstant.REGISTERED_SUCCESS.equals(retCode)){
+            crmAdminService.saveSession(request,adminName);
+        }
+        return retCode;
     }
 
+    @ResponseBody
+    @ApiOperation(value = "登录", notes = "")
+    @RequestMapping(value = "/login",method = RequestMethod.POST)
+    public String login(HttpServletRequest request,String adminName, String adminPassword){
+        String loginIP = CommonUtils.getIP(request);
+        String retCode = crmAdminService.login(adminName,adminPassword,loginIP);
+        if(ErrCodeConstant.LOGIN_SUCCESS.equals(retCode)){
+            crmAdminService.saveSession(request,adminName);
+        }
+        return retCode;
+    }
+
+    @ResponseBody
+    @ApiOperation(value = "修改密码", notes = "")
     @RequestMapping(value = "/changePassword",method = RequestMethod.POST)
-    public @ResponseBody String changePassword(HttpServletRequest request,
+    public String changePassword(HttpServletRequest request,
                                                String oldPassword,String newPassword){
         UserSession session = (UserSession) request.getSession().getAttribute("userSession");
-        return null;
+        String retCode = crmAdminService.changePassword(session.getAdminId(),oldPassword,newPassword);
+        return retCode;
     }
 
+    @ResponseBody
+    @ApiOperation(value = "退出登录", notes = "")
     @RequestMapping(value = "/logout",method = RequestMethod.GET)
-    public @ResponseBody String logout(HttpServletRequest request){
+    public String logout(HttpServletRequest request){
         request.getSession().invalidate();
-        return null;
+        return ErrCodeConstant.EXIT_SUCCESS;
     }
-
-
-
 }

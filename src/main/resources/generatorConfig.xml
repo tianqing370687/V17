@@ -42,7 +42,7 @@
         </javaClientGenerator>
 
         <!-- 数据表进行生成操作 schema:相当于库名; tableName:表名; domainObjectName:对应的DO -->
-        <table schema="v17" tableName="v17_personal_info" domainObjectName="PersonalInfo"
+        <table schema="v17" tableName="v17_verification_code" domainObjectName="VerificationCode"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">

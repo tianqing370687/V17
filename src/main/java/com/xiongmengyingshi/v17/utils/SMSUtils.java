@@ -1,7 +1,5 @@
 package com.xiongmengyingshi.v17.utils;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -88,7 +86,7 @@ public class SMSUtils {
         String key = ResourceUtils.getBundleValue4String("sms.key");
 
         String body = java.net.URLEncoder.encode(smsContent);
-        String suffix = java.net.URLEncoder.encode("V17");
+        String suffix = java.net.URLEncoder.encode("明睿互联");
         String content = body + java.net.URLEncoder.encode("【") + suffix + java.net.URLEncoder.encode("】");
 
         long time = CommonUtils.getGMTTime();//获取格林尼治时间

@@ -13,10 +13,16 @@
     admin_id, admin_name, admin_password, password_salt, login_time, login_ip
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select
+    select 
     <include refid="Base_Column_List" />
     from v17_admin
     where admin_id = #{adminId,jdbcType=BIGINT}
+  </select>
+  <select id="selectByAdminName" parameterType="String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from v17_admin
+    where admin_name = #{adminName,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from v17_admin
@@ -25,7 +31,7 @@
   <insert id="insert" parameterType="com.xiongmengyingshi.v17.entity.Admin">
     insert into v17_admin (admin_name, admin_password,
       password_salt, login_time, login_ip
-      )
+    )
     values (#{adminName,jdbcType=VARCHAR}, #{adminPassword,jdbcType=VARCHAR},
       #{passwordSalt,jdbcType=CHAR}, #{loginTime,jdbcType=TIMESTAMP}, #{loginIP,jdbcType=VARCHAR}
       )
@@ -48,7 +54,7 @@
       <if test="loginTime != null">
         login_time,
       </if>
-      <if test="loginIp != null">
+      <if test="loginIP != null">
         login_ip,
       </if>
     </trim>
@@ -68,8 +74,8 @@
       <if test="loginTime != null">
         #{loginTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="loginIp != null">
-        #{loginIp,jdbcType=VARCHAR},
+      <if test="loginIP != null">
+        #{loginIP,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -88,8 +94,8 @@
       <if test="loginTime != null">
         login_time = #{loginTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="loginIp != null">
-        login_ip = #{loginIp,jdbcType=VARCHAR},
+      <if test="loginIP != null">
+        login_ip = #{loginIP,jdbcType=VARCHAR},
       </if>
     </set>
     where admin_id = #{adminId,jdbcType=BIGINT}
@@ -100,7 +106,7 @@
       admin_password = #{adminPassword,jdbcType=VARCHAR},
       password_salt = #{passwordSalt,jdbcType=CHAR},
       login_time = #{loginTime,jdbcType=TIMESTAMP},
-      login_ip = #{loginIp,jdbcType=VARCHAR}
+      login_ip = #{loginIP,jdbcType=VARCHAR}
     where admin_id = #{adminId,jdbcType=BIGINT}
   </update>
 </mapper>

@@ -5,9 +5,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 
 @Mapper
-@Component(value = "verificationCodeMapper")
+@Component("verificationCodeMapper")
 public interface VerificationCodeMapper {
-
     int deleteByPrimaryKey(String phoneNum);
 
     int insert(VerificationCode record);

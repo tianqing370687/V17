@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
 <mapper namespace="com.xiongmengyingshi.v17.dao.PersonalInfoMapper">
   <resultMap id="BaseResultMap" type="com.xiongmengyingshi.v17.entity.PersonalInfo">
     <id column="info_id" jdbcType="INTEGER" property="infoId" />
-    <result column="info_name" jdbcType="VARCHAR" property="infoName" />
-    <result column="info_birthday" jdbcType="TIMESTAMP" property="infoBirthday" />
-    <result column="info_age" jdbcType="INTEGER" property="infoAge" />
-    <result column="info_birthplace" jdbcType="VARCHAR" property="infoBirthplace" />
-    <result column="info_residence" jdbcType="VARCHAR" property="infoResidence" />
-    <result column="info_performing_experience" jdbcType="VARCHAR" property="infoPerformingExperience" />
-    <result column="info_family_composition" jdbcType="VARCHAR" property="infoFamilyComposition" />
-    <result column="info_occupation" jdbcType="VARCHAR" property="infoOccupation" />
-    <result column="info_schools_majors" jdbcType="VARCHAR" property="infoSchoolsMajors" />
-    <result column="info_grade" jdbcType="VARCHAR" property="infoGrade" />
-    <result column="info_place_of_study" jdbcType="VARCHAR" property="infoPlaceOfStudy" />
-    <result column="info_phone_num" jdbcType="VARCHAR" property="infoPhoneNum" />
-    <result column="info_qq" jdbcType="INTEGER" property="infoQq" />
-    <result column="info_email" jdbcType="VARCHAR" property="infoEmail" />
-    <result column="info_weibo" jdbcType="VARCHAR" property="infoWeibo" />
-    <result column="info_home_phone" jdbcType="VARCHAR" property="infoHomePhone" />
-    <result column="info_specialty" jdbcType="VARCHAR" property="infoSpecialty" />
-    <result column="info_interest" jdbcType="VARCHAR" property="infoInterest" />
-    <result column="info_awards" jdbcType="VARCHAR" property="infoAwards" />
-    <result column="info_dream" jdbcType="VARCHAR" property="infoDream" />
-    <result column="info_idol" jdbcType="VARCHAR" property="infoIdol" />
-    <result column="info_comic" jdbcType="VARCHAR" property="infoComic" />
-    <result column="info_film_works" jdbcType="VARCHAR" property="infoFilmWorks" />
-    <result column="info_website" jdbcType="VARCHAR" property="infoWebsite" />
-    <result column="info_app" jdbcType="VARCHAR" property="infoApp" />
-    <result column="info_want_to_say" jdbcType="VARCHAR" property="infoWantToSay" />
-    <result column="info_video1_url" jdbcType="VARCHAR" property="infoVideo1Url" />
-    <result column="info_video2_url" jdbcType="VARCHAR" property="infoVideo2Url" />
-    <result column="info_mugshot_img_url" jdbcType="VARCHAR" property="infoMugshotImgUrl" />
-    <result column="info_halflength_img_url" jdbcType="VARCHAR" property="infoHalflengthImgUrl" />
-    <result column="info_fullbody_img_url" jdbcType="VARCHAR" property="infoFullbodyImgUrl" />
-    <result column="info_create_time" jdbcType="TIMESTAMP" property="infoCreateTime" />
+    <result column="info_name" jdbcType="VARCHAR" property="name" />
+    <result column="info_birthday" jdbcType="TIMESTAMP" property="birthday" />
+    <result column="info_age" jdbcType="INTEGER" property="age" />
+    <result column="info_birthplace" jdbcType="VARCHAR" property="birthplace" />
+    <result column="info_residence" jdbcType="VARCHAR" property="residence" />
+    <result column="info_performing_experience" jdbcType="VARCHAR" property="performingExperience" />
+    <result column="info_family_composition" jdbcType="VARCHAR" property="familyComposition" />
+    <result column="info_occupation" jdbcType="VARCHAR" property="occupation" />
+    <result column="info_schools_majors" jdbcType="VARCHAR" property="schoolsMajors" />
+    <result column="info_grade" jdbcType="VARCHAR" property="grade" />
+    <result column="info_place_of_study" jdbcType="VARCHAR" property="placeOfStudy" />
+    <result column="info_phone_num" jdbcType="VARCHAR" property="phoneNum" />
+    <result column="info_qq" jdbcType="INTEGER" property="qq" />
+    <result column="info_email" jdbcType="VARCHAR" property="email" />
+    <result column="info_weibo" jdbcType="VARCHAR" property="weibo" />
+    <result column="info_home_phone" jdbcType="VARCHAR" property="homePhone" />
+    <result column="info_specialty" jdbcType="VARCHAR" property="specialty" />
+    <result column="info_interest" jdbcType="VARCHAR" property="interest" />
+    <result column="info_awards" jdbcType="VARCHAR" property="awards" />
+    <result column="info_dream" jdbcType="VARCHAR" property="dream" />
+    <result column="info_idol" jdbcType="VARCHAR" property="idol" />
+    <result column="info_comic" jdbcType="VARCHAR" property="comic" />
+    <result column="info_film_works" jdbcType="VARCHAR" property="filmWorks" />
+    <result column="info_website" jdbcType="VARCHAR" property="website" />
+    <result column="info_app" jdbcType="VARCHAR" property="app" />
+    <result column="info_want_to_say" jdbcType="VARCHAR" property="wantToSay" />
+    <result column="info_video1_url" jdbcType="VARCHAR" property="video1Url" />
+    <result column="info_video2_url" jdbcType="VARCHAR" property="video2Url" />
+    <result column="info_mugshot_img_url" jdbcType="VARCHAR" property="mugshotImgUrl" />
+    <result column="info_halflength_img_url" jdbcType="VARCHAR" property="halflengthImgUrl" />
+    <result column="info_fullbody_img_url" jdbcType="VARCHAR" property="fullbodyImgUrl" />
+    <result column="info_serial_num" jdbcType="CHAR" property="serialNum" />
+    <result column="info_create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
   <sql id="Base_Column_List">
     info_id, info_name, info_birthday, info_age, info_birthplace, info_residence, info_performing_experience, 
@@ -43,7 +43,7 @@
     info_phone_num, info_qq, info_email, info_weibo, info_home_phone, info_specialty, 
     info_interest, info_awards, info_dream, info_idol, info_comic, info_film_works, info_website, 
     info_app, info_want_to_say, info_video1_url, info_video2_url, info_mugshot_img_url, 
-    info_halflength_img_url, info_fullbody_img_url, info_create_time
+    info_halflength_img_url, info_fullbody_img_url, info_serial_num, info_create_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -52,12 +52,28 @@
     where info_id = #{infoId,jdbcType=INTEGER}
   </select>
 
-  <select id="selectByPhoneNum" parameterType="String" resultType="com.xiongmengyingshi.v17.entity.PersonalInfo">
-    SELECT
-    <include refid="BaseResultMap" />
-    FROM v17_personal_info
-    WHERE info_phone_num = #{infoPhoneNum,jdbcType=VARCHAR}
+  <select id="selectInfoIdByParam" resultType="java.lang.Integer">
+    SELECT info_id
+    FROM  v17_personal_info
+    WHERE info_name =#{name,jdbcType=VARCHAR} AND info_phone_num = #{phoneNum,jdbcType=VARCHAR}
   </select>
+
+  <select id="listPersonalInfoByPage" parameterType="map" resultMap="BaseResultMap">
+    SELECT
+    t1.*
+    FROM v17_personal_info t1,
+    (SELECT info_id FROM v17_personal_info limit #{rows},#{pageSize}) t2
+    WHERE
+    t1.info_id = t2.info_id
+  </select>
+
+  <select id="listPersonalInfoByAll" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM v17_personal_info
+  </select>
+
+
 
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
@@ -65,7 +81,7 @@
     where info_id = #{infoId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.xiongmengyingshi.v17.entity.PersonalInfo">
-    insert into v17_personal_info (info_id, info_name, info_birthday, 
+    insert into v17_personal_info (info_name, info_birthday,
       info_age, info_birthplace, info_residence, 
       info_performing_experience, info_family_composition, 
       info_occupation, info_schools_majors, info_grade, 
@@ -76,19 +92,21 @@
       info_film_works, info_website, info_app, 
       info_want_to_say, info_video1_url, info_video2_url, 
       info_mugshot_img_url, info_halflength_img_url, 
-      info_fullbody_img_url, info_create_time)
-    values (#{infoId,jdbcType=INTEGER}, #{infoName,jdbcType=VARCHAR}, #{infoBirthday,jdbcType=TIMESTAMP}, 
-      #{infoAge,jdbcType=INTEGER}, #{infoBirthplace,jdbcType=VARCHAR}, #{infoResidence,jdbcType=VARCHAR}, 
-      #{infoPerformingExperience,jdbcType=VARCHAR}, #{infoFamilyComposition,jdbcType=VARCHAR}, 
-      #{infoOccupation,jdbcType=VARCHAR}, #{infoSchoolsMajors,jdbcType=VARCHAR}, #{infoGrade,jdbcType=VARCHAR}, 
-      #{infoPlaceOfStudy,jdbcType=VARCHAR}, #{infoPhoneNum,jdbcType=VARCHAR}, #{infoQq,jdbcType=INTEGER}, 
-      #{infoEmail,jdbcType=VARCHAR}, #{infoWeibo,jdbcType=VARCHAR}, #{infoHomePhone,jdbcType=VARCHAR}, 
-      #{infoSpecialty,jdbcType=VARCHAR}, #{infoInterest,jdbcType=VARCHAR}, #{infoAwards,jdbcType=VARCHAR}, 
-      #{infoDream,jdbcType=VARCHAR}, #{infoIdol,jdbcType=VARCHAR}, #{infoComic,jdbcType=VARCHAR}, 
-      #{infoFilmWorks,jdbcType=VARCHAR}, #{infoWebsite,jdbcType=VARCHAR}, #{infoApp,jdbcType=VARCHAR}, 
-      #{infoWantToSay,jdbcType=VARCHAR}, #{infoVideo1Url,jdbcType=VARCHAR}, #{infoVideo2Url,jdbcType=VARCHAR}, 
-      #{infoMugshotImgUrl,jdbcType=VARCHAR}, #{infoHalflengthImgUrl,jdbcType=VARCHAR}, 
-      #{infoFullbodyImgUrl,jdbcType=VARCHAR}, #{infoCreateTime,jdbcType=TIMESTAMP})
+      info_fullbody_img_url, info_serial_num, info_create_time
+      )
+    values ( #{name,jdbcType=VARCHAR}, #{birthday,jdbcType=TIMESTAMP},
+      #{age,jdbcType=INTEGER}, #{birthplace,jdbcType=VARCHAR}, #{residence,jdbcType=VARCHAR},
+      #{performingExperience,jdbcType=VARCHAR}, #{familyComposition,jdbcType=VARCHAR},
+      #{occupation,jdbcType=VARCHAR}, #{schoolsMajors,jdbcType=VARCHAR}, #{grade,jdbcType=VARCHAR},
+      #{placeOfStudy,jdbcType=VARCHAR}, #{phoneNum,jdbcType=VARCHAR}, #{qq,jdbcType=INTEGER},
+      #{email,jdbcType=VARCHAR}, #{weibo,jdbcType=VARCHAR}, #{homePhone,jdbcType=VARCHAR},
+      #{specialty,jdbcType=VARCHAR}, #{interest,jdbcType=VARCHAR}, #{awards,jdbcType=VARCHAR},
+      #{dream,jdbcType=VARCHAR}, #{idol,jdbcType=VARCHAR}, #{comic,jdbcType=VARCHAR},
+      #{filmWorks,jdbcType=VARCHAR}, #{website,jdbcType=VARCHAR}, #{app,jdbcType=VARCHAR},
+      #{wantToSay,jdbcType=VARCHAR}, #{video1Url,jdbcType=VARCHAR}, #{video2Url,jdbcType=VARCHAR},
+      #{mugShotImgUrl,jdbcType=VARCHAR}, #{halfLengthImgUrl,jdbcType=VARCHAR},
+      #{fullBodyImgUrl,jdbcType=VARCHAR}, #{serialNum,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.xiongmengyingshi.v17.entity.PersonalInfo">
     insert into v17_personal_info
@@ -188,6 +206,9 @@
       </if>
       <if test="infoFullbodyImgUrl != null">
         info_fullbody_img_url,
+      </if>
+      <if test="infoSerialNum != null">
+        info_serial_num,
       </if>
       <if test="infoCreateTime != null">
         info_create_time,
@@ -290,6 +311,9 @@
       <if test="infoFullbodyImgUrl != null">
         #{infoFullbodyImgUrl,jdbcType=VARCHAR},
       </if>
+      <if test="infoSerialNum != null">
+        #{infoSerialNum,jdbcType=CHAR},
+      </if>
       <if test="infoCreateTime != null">
         #{infoCreateTime,jdbcType=TIMESTAMP},
       </if>
@@ -391,6 +415,9 @@
       <if test="infoFullbodyImgUrl != null">
         info_fullbody_img_url = #{infoFullbodyImgUrl,jdbcType=VARCHAR},
       </if>
+      <if test="infoSerialNum != null">
+        info_serial_num = #{infoSerialNum,jdbcType=CHAR},
+      </if>
       <if test="infoCreateTime != null">
         info_create_time = #{infoCreateTime,jdbcType=TIMESTAMP},
       </if>
@@ -430,6 +457,7 @@
       info_mugshot_img_url = #{infoMugshotImgUrl,jdbcType=VARCHAR},
       info_halflength_img_url = #{infoHalflengthImgUrl,jdbcType=VARCHAR},
       info_fullbody_img_url = #{infoFullbodyImgUrl,jdbcType=VARCHAR},
+      info_serial_num = #{infoSerialNum,jdbcType=CHAR},
       info_create_time = #{infoCreateTime,jdbcType=TIMESTAMP}
     where info_id = #{infoId,jdbcType=INTEGER}
   </update>

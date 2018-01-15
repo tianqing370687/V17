@@ -1,12 +1,12 @@
 package com.xiongmengyingshi.v17.controller;
 
-import com.xiongmengyingshi.v17.constant.ServerCodeConstant;
+import com.xiongmengyingshi.v17.constant.ErrCodeConstant;
 import com.xiongmengyingshi.v17.controller.form.EnrollInfoForm;
+import com.xiongmengyingshi.v17.controller.vo.SaveEnrollInfoVO;
 import com.xiongmengyingshi.v17.entity.PersonalInfo;
 import com.xiongmengyingshi.v17.service.PersonalInfoService;
 import com.xiongmengyingshi.v17.service.VerificationCodeService;
 import com.xiongmengyingshi.v17.utils.CommonUtils;
-import com.xiongmengyingshi.v17.utils.FileUtils;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.apache.logging.log4j.LogManager;
@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.io.IOException;
-import java.math.BigInteger;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -36,13 +34,14 @@ public class EnrollController {
 
     private static Logger logger = LogManager.getLogger(EnrollController.class);
 
+    @ApiOperation(value = "获取验证码", notes = "通过填写用户手机号，获取短信验证码")
     @RequestMapping(value = "/getVerificationCode",method = RequestMethod.POST)
     public @ResponseBody String getVerificationCode(String phoneNum){
         String retCode = verificationCodeService.getVerificationCode(phoneNum.trim());
         return retCode;
     }
 
-    @ApiOperation(value = "获取用户详细信息", notes = "根据url的id来获取用户详细信息")
+    @ApiOperation(value = "重新获取验证码", notes = "通过填写用户手机号，获取短信验证码")
     @ApiImplicitParam(name = "phoneNum", value = "用户", required = true, dataType = "Long")
     @RequestMapping(value = "/resendCode",method = RequestMethod.POST)
     public @ResponseBody String resendCode(String phoneNum){
@@ -50,15 +49,18 @@ public class EnrollController {
         return retCode;
     }
 
+    @ApiOperation(value = "验证手机验证码", notes = "")
     @RequestMapping(value = "/testCode",method = RequestMethod.POST)
     public @ResponseBody String testCode(String phoneNum,String verificationCode){
         String retCode = verificationCodeService.testCode(phoneNum,verificationCode);
         return retCode;
     }
 
+    @ApiOperation(value = "保存报名信息", notes = "")
     @RequestMapping(value = "/saveEnrollInfo",method = RequestMethod.POST)
-    public void saveEnrollInfo(EnrollInfoForm form){
-
+    public @ResponseBody
+    SaveEnrollInfoVO saveEnrollInfo(EnrollInfoForm form){
+        SaveEnrollInfoVO vo = new SaveEnrollInfoVO();
         //保存基本信息
         PersonalInfo personalInfo = new PersonalInfo();
         personalInfo.setName(form.getName());
@@ -87,33 +89,26 @@ public class EnrollController {
         personalInfo.setWebsite(form.getWebsite());
         personalInfo.setWantToSay(form.getWantToSay());
         personalInfo.setCreateTime(new Date());
+        String retCode = personalInfoService.savePersonalInfo(personalInfo);
 
-        personalInfoService.savePersonalInfo(personalInfo);
-
-        //查询id
-        BigInteger userId = new BigInteger("1");
-
-        //存储video，pic
-        try {
-            String video1Url = FileUtils.uploadFile(
-                    ServerCodeConstant.upload_file_type_video1,userId,form.getVideo1());
-            String video2Url = FileUtils.uploadFile(
-                    ServerCodeConstant.upload_file_type_video2,userId,form.getVideo2());
-            String mugShotImgUrl = FileUtils.uploadFile(
-                    ServerCodeConstant.upload_file_type_mugShot,userId,form.getMugShotImg());
-            String halfLengthImgUrl = FileUtils.uploadFile(
-                    ServerCodeConstant.upload_file_type_halfLength,userId,form.getHalfLengthImg());
-            String fullBodyImgUrl = FileUtils.uploadFile(
-                    ServerCodeConstant.upload_file_type_fullBody,userId,form.getFullBodyImg());
-        } catch (IOException e) {
-            e.printStackTrace();
+        if(!ErrCodeConstant.ENROLL_INFO_SUCCESS.equals(retCode)){
+            vo.setSerialNum(null);
+            vo.setRetCode(retCode);
+            return vo;
         }
 
-        //update表信息
+        //查询id
+        int userId = personalInfoService.getPersonalInfoId(form.getName(),form.getPhoneNum());
+
+//        personalInfoService.saveFileAndUpdateInfo(userId,form.getVideo1(),form.getVideo2(),
+//                form.getMugShotImg(),form.getHalfLengthImg(),form.getFullBodyImg());
 
         //返回结果
         String serialNum = new SimpleDateFormat("yyMMddHHmmss").format(new Date())
                 +CommonUtils.strFormat(userId+"",6);
-
+        logger.info("serialNum is {}",serialNum);
+        vo.setRetCode(retCode);
+        vo.setSerialNum(serialNum);
+        return vo;
     }
 }
