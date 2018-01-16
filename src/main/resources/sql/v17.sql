@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50619
 File Encoding         : 65001
 
-Date: 2018-01-13 15:52:51
+Date: 2018-01-16 18:25:09
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -22,12 +22,12 @@ DROP TABLE IF EXISTS `v17_admin`;
 CREATE TABLE `v17_admin` (
   `admin_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `admin_name` varchar(30) NOT NULL COMMENT '管理员用户名',
-  `admin_password` varchar(30) NOT NULL COMMENT '管理员密码',
-  `password_salt` char(6) NOT NULL COMMENT '盐值',
+  `admin_password` varchar(50) NOT NULL COMMENT '管理员密码',
+  `password_salt` char(50) NOT NULL COMMENT '盐值',
   `login_time` datetime DEFAULT NULL COMMENT '登陆时间',
   `login_ip` varchar(255) DEFAULT NULL COMMENT '登录ip',
   PRIMARY KEY (`admin_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for v17_personal_info
@@ -61,15 +61,15 @@ CREATE TABLE `v17_personal_info` (
   `info_website` varchar(200) DEFAULT NULL COMMENT '常去的网站',
   `info_app` varchar(200) DEFAULT NULL COMMENT '常用的app',
   `info_want_to_say` varchar(500) DEFAULT NULL COMMENT '相对你未来可能开始的生涯说点什么',
-  `info_video1_url` varchar(200) NOT NULL COMMENT '配音DEMON/声线展示视频地址',
+  `info_video1_url` varchar(200) DEFAULT NULL COMMENT '配音DEMON/声线展示视频地址',
   `info_video2_url` varchar(200) DEFAULT NULL COMMENT '其他才艺展示视频地址',
-  `info_mugshot_img_url` varchar(200) NOT NULL COMMENT '大头照地址',
-  `info_halflength_img_url` varchar(200) NOT NULL COMMENT '半身照地址',
-  `info_fullbody_img_url` varchar(200) NOT NULL COMMENT '全身照地址',
+  `info_mugshot_img_url` varchar(200) DEFAULT NULL COMMENT '大头照地址',
+  `info_halflength_img_url` varchar(200) DEFAULT NULL COMMENT '半身照地址',
+  `info_fullbody_img_url` varchar(200) DEFAULT NULL COMMENT '全身照地址',
   `info_serial_num` char(11) DEFAULT NULL COMMENT '序列号',
   `info_create_time` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`info_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for v17_verification_code

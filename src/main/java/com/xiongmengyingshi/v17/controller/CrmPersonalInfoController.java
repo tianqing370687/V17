@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * Created by nicholas.chi on 2018/1/15.
  */
-//@RequestMapping(value = "/crm")
+@RequestMapping(value = "/crm")
 @Controller
 public class CrmPersonalInfoController {
 
