@@ -14,8 +14,13 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.lang.reflect.Method;
 import java.net.URLEncoder;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by nicholas.chi on 2018/1/15.
@@ -208,6 +213,8 @@ public class POIExcelUtils {
                                         cell.setCellValue(floatDecimalFormat.format(Float.parseFloat(data)));
                                     }else if("double".equals(returnType)){
                                         cell.setCellValue(doubleDecimalFormat.format(Double.parseDouble(data)));
+                                    }else if("java.util.Date".equals(returnType)){
+                                        cell.setCellValue(dateTimeFormat(data));
                                     }else{
                                         cell.setCellValue(data);
                                     }
@@ -319,4 +326,18 @@ public class POIExcelUtils {
         }
         return flag;
     }
+
+    private String dateTimeFormat(String dateStr){
+        SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.US);
+        String formatedDateStr = null;
+
+        try {
+            Date date = sdf.parse(dateStr);
+            formatedDateStr = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return formatedDateStr;
+    }
+
 }

@@ -96,17 +96,16 @@ public class EnrollController {
             vo.setRetCode(retCode);
             return vo;
         }
-
         //查询id
         int userId = personalInfoService.getPersonalInfoId(form.getName(),form.getPhoneNum());
 
-//        personalInfoService.saveFileAndUpdateInfo(userId,form.getVideo1(),form.getVideo2(),
-//                form.getMugShotImg(),form.getHalfLengthImg(),form.getFullBodyImg());
+        personalInfoService.saveFileAndUpdateInfo(userId,form.getVideo1(),form.getVideo2(),
+                form.getMugShotImg(),form.getHalfLengthImg(),form.getFullBodyImg());
 
         //返回结果
-        String serialNum = new SimpleDateFormat("yyMMddHHmmss").format(new Date())
-                +CommonUtils.strFormat(userId+"",6);
+        String serialNum = personalInfoService.getSerialNum(userId);
         logger.info("serialNum is {}",serialNum);
+
         vo.setRetCode(retCode);
         vo.setSerialNum(serialNum);
         return vo;

@@ -5,6 +5,7 @@ import com.xiongmengyingshi.v17.constant.ServerCodeConstant;
 import com.xiongmengyingshi.v17.dao.PersonalInfoMapper;
 import com.xiongmengyingshi.v17.entity.PersonalInfo;
 import com.xiongmengyingshi.v17.service.PersonalInfoService;
+import com.xiongmengyingshi.v17.utils.CommonUtils;
 import com.xiongmengyingshi.v17.utils.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.math.BigInteger;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -83,5 +86,14 @@ public class PersonalInfoServiceImpl implements PersonalInfoService {
 
     public List<PersonalInfo> listPersonalInfoByAll(){
         return personalInfoMapper.listPersonalInfoByAll();
+    }
+
+    public String getSerialNum(Integer infoId){
+        String serialNum = new SimpleDateFormat("yyMMddHHmmss").format(new Date())
+                + CommonUtils.strFormat(infoId+"",6);
+        PersonalInfo personalInfo = personalInfoMapper.selectByPrimaryKey(infoId);
+        personalInfo.setSerialNum(serialNum);
+        personalInfoMapper.updateByPrimaryKey(personalInfo);
+        return serialNum;
     }
 }

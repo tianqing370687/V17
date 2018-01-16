@@ -23,5 +23,7 @@ public interface PersonalInfoService {
 
     List<PersonalInfo> listPersonalInfoByAll();
 
+    String getSerialNum(Integer infoId);
+
 
 }
