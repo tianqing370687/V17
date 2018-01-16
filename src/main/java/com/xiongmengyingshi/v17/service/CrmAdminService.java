@@ -1,6 +1,7 @@
 package com.xiongmengyingshi.v17.service;
 
 import com.xiongmengyingshi.v17.entity.Admin;
+import com.xiongmengyingshi.v17.service.bo.LoginBO;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,7 +12,7 @@ public interface CrmAdminService {
 
     String register(String adminName,String adminPassword, String passwordSalt,String loginIP);
 
-    String login(String adminName,String adminPassword,String loginIP);
+    LoginBO login(String adminName, String adminPassword, String loginIP);
 
     String changePassword(long adminId,String oldPassword,String newPassword );
 

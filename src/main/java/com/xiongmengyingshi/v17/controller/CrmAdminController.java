@@ -1,8 +1,10 @@
 package com.xiongmengyingshi.v17.controller;
 
 import com.xiongmengyingshi.v17.constant.ErrCodeConstant;
+import com.xiongmengyingshi.v17.controller.vo.LoginVO;
 import com.xiongmengyingshi.v17.entity.Admin;
 import com.xiongmengyingshi.v17.service.CrmAdminService;
+import com.xiongmengyingshi.v17.service.bo.LoginBO;
 import com.xiongmengyingshi.v17.session.UserSession;
 import com.xiongmengyingshi.v17.utils.CommonUtils;
 import io.swagger.annotations.ApiOperation;
@@ -44,13 +46,22 @@ public class CrmAdminController {
     @ResponseBody
     @ApiOperation(value = "登录", notes = "")
     @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public String login(HttpServletRequest request,String adminName, String adminPassword){
+    public LoginVO login(HttpServletRequest request,String adminName, String adminPassword){
+        LoginVO vo = new LoginVO();
         String loginIP = CommonUtils.getIP(request);
-        String retCode = crmAdminService.login(adminName,adminPassword,loginIP);
-        if(ErrCodeConstant.LOGIN_SUCCESS.equals(retCode)){
-            crmAdminService.saveSession(request,adminName);
+        LoginBO bo = crmAdminService.login(adminName,adminPassword,loginIP);
+        vo.setRetCode(bo.getRetCode());
+        if(ErrCodeConstant.LOGIN_SUCCESS.equals(bo.getRetCode())){
+//            crmAdminService.saveSession(request,adminName);
+            UserSession session = new UserSession();
+            session.setAdminId(new Long(bo.getAdmin().getAdminId()+""));
+            session.setAdminName(adminName);
+            request.getSession().setAttribute("userSession",session);
+
+            vo.setAdminId(bo.getAdmin().getAdminId());
+            vo.setAdminName(bo.getAdmin().getAdminName());
         }
-        return retCode;
+        return vo;
     }
 
     @ResponseBody

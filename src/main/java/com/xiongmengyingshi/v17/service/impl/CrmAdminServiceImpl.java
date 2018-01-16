@@ -5,6 +5,7 @@ import com.xiongmengyingshi.v17.controller.EnrollController;
 import com.xiongmengyingshi.v17.dao.AdminMapper;
 import com.xiongmengyingshi.v17.entity.Admin;
 import com.xiongmengyingshi.v17.service.CrmAdminService;
+import com.xiongmengyingshi.v17.service.bo.LoginBO;
 import com.xiongmengyingshi.v17.session.UserSession;
 import com.xiongmengyingshi.v17.utils.CommonUtils;
 import org.apache.logging.log4j.LogManager;
@@ -50,11 +51,14 @@ public class CrmAdminServiceImpl implements CrmAdminService{
     }
 
 
-    public String login(String adminName,String adminPassword,String loginIP){
+    public LoginBO login(String adminName, String adminPassword, String loginIP){
 
+        LoginBO bo = new LoginBO();
         Admin admin = adminMapper.selectByAdminName(adminName);
+
         if(admin == null){
-            return ErrCodeConstant.LOGIN_FAIL_WRONG_USERNAME;
+            bo.setRetCode(ErrCodeConstant.LOGIN_FAIL_WRONG_USERNAME);
+            return bo;
         }
 
         boolean isSuccess =(CommonUtils.getMD5Str(adminPassword+CommonUtils.getMD5Str(admin.getPasswordSalt()))).
@@ -64,10 +68,14 @@ public class CrmAdminServiceImpl implements CrmAdminService{
             admin.setLoginTime(new Date());
             admin.setLoginIP(loginIP);
             adminMapper.updateByPrimaryKey(admin);
-            return ErrCodeConstant.LOGIN_SUCCESS;
+
+            bo.setRetCode(ErrCodeConstant.LOGIN_SUCCESS);
+            bo.setAdmin(admin);
+            return bo;
         }
 
-        return ErrCodeConstant.LOGIN_FAIL_WRONG_PASSWORD;
+        bo.setRetCode(ErrCodeConstant.LOGIN_FAIL_WRONG_PASSWORD);
+        return bo;
 
     }
 
