@@ -10,7 +10,7 @@ public class PersonalInfo {
 
     private BigInteger infoId;
     private String name;
-    private String birthday;
+    private Date birthday;
     private int age;
     private String birthplace;
     private String residence;
@@ -59,11 +59,11 @@ public class PersonalInfo {
         this.name = name;
     }
 
-    public String getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(String birthday) {
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
 

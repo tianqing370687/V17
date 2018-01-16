@@ -31,9 +31,9 @@
     <result column="info_want_to_say" jdbcType="VARCHAR" property="wantToSay" />
     <result column="info_video1_url" jdbcType="VARCHAR" property="video1Url" />
     <result column="info_video2_url" jdbcType="VARCHAR" property="video2Url" />
-    <result column="info_mugshot_img_url" jdbcType="VARCHAR" property="mugshotImgUrl" />
-    <result column="info_halflength_img_url" jdbcType="VARCHAR" property="halflengthImgUrl" />
-    <result column="info_fullbody_img_url" jdbcType="VARCHAR" property="fullbodyImgUrl" />
+    <result column="info_mugshot_img_url" jdbcType="VARCHAR" property="mugShotImgUrl" />
+    <result column="info_halflength_img_url" jdbcType="VARCHAR" property="halfLengthImgUrl" />
+    <result column="info_fullbody_img_url" jdbcType="VARCHAR" property="fullBodyImgUrl" />
     <result column="info_serial_num" jdbcType="CHAR" property="serialNum" />
     <result column="info_create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
@@ -114,103 +114,103 @@
       <if test="infoId != null">
         info_id,
       </if>
-      <if test="infoName != null">
+      <if test="name != null">
         info_name,
       </if>
-      <if test="infoBirthday != null">
+      <if test="birthday != null">
         info_birthday,
       </if>
-      <if test="infoAge != null">
+      <if test="age != null">
         info_age,
       </if>
-      <if test="infoBirthplace != null">
+      <if test="birthplace != null">
         info_birthplace,
       </if>
-      <if test="infoResidence != null">
+      <if test="residence != null">
         info_residence,
       </if>
-      <if test="infoPerformingExperience != null">
+      <if test="performingExperience != null">
         info_performing_experience,
       </if>
-      <if test="infoFamilyComposition != null">
+      <if test="familyComposition != null">
         info_family_composition,
       </if>
-      <if test="infoOccupation != null">
+      <if test="occupation != null">
         info_occupation,
       </if>
-      <if test="infoSchoolsMajors != null">
+      <if test="schoolsMajors != null">
         info_schools_majors,
       </if>
-      <if test="infoGrade != null">
+      <if test="grade != null">
         info_grade,
       </if>
-      <if test="infoPlaceOfStudy != null">
+      <if test="placeOfStudy != null">
         info_place_of_study,
       </if>
-      <if test="infoPhoneNum != null">
+      <if test="phoneNum != null">
         info_phone_num,
       </if>
-      <if test="infoQq != null">
+      <if test="qq != null">
         info_qq,
       </if>
-      <if test="infoEmail != null">
+      <if test="email != null">
         info_email,
       </if>
-      <if test="infoWeibo != null">
+      <if test="weibo != null">
         info_weibo,
       </if>
-      <if test="infoHomePhone != null">
+      <if test="homePhone != null">
         info_home_phone,
       </if>
-      <if test="infoSpecialty != null">
+      <if test="specialty != null">
         info_specialty,
       </if>
-      <if test="infoInterest != null">
+      <if test="interest != null">
         info_interest,
       </if>
-      <if test="infoAwards != null">
+      <if test="awards != null">
         info_awards,
       </if>
-      <if test="infoDream != null">
+      <if test="dream != null">
         info_dream,
       </if>
-      <if test="infoIdol != null">
+      <if test="idol != null">
         info_idol,
       </if>
-      <if test="infoComic != null">
+      <if test="comic != null">
         info_comic,
       </if>
-      <if test="infoFilmWorks != null">
+      <if test="filmWorks != null">
         info_film_works,
       </if>
-      <if test="infoWebsite != null">
+      <if test="website != null">
         info_website,
       </if>
-      <if test="infoApp != null">
+      <if test="app != null">
         info_app,
       </if>
-      <if test="infoWantToSay != null">
+      <if test="wantToSay != null">
         info_want_to_say,
       </if>
-      <if test="infoVideo1Url != null">
+      <if test="video1Url != null">
         info_video1_url,
       </if>
-      <if test="infoVideo2Url != null">
+      <if test="video2Url != null">
         info_video2_url,
       </if>
-      <if test="infoMugshotImgUrl != null">
+      <if test="mugShotImgUrl != null">
         info_mugshot_img_url,
       </if>
-      <if test="infoHalflengthImgUrl != null">
+      <if test="halfLengthImgUrl != null">
         info_halflength_img_url,
       </if>
-      <if test="infoFullbodyImgUrl != null">
+      <if test="fullBodyImgUrl != null">
         info_fullbody_img_url,
       </if>
-      <if test="infoSerialNum != null">
+      <if test="serialNum != null">
         info_serial_num,
       </if>
-      <if test="infoCreateTime != null">
+      <if test="createTime != null">
         info_create_time,
       </if>
     </trim>
@@ -218,247 +218,247 @@
       <if test="infoId != null">
         #{infoId,jdbcType=INTEGER},
       </if>
-      <if test="infoName != null">
-        #{infoName,jdbcType=VARCHAR},
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
       </if>
-      <if test="infoBirthday != null">
-        #{infoBirthday,jdbcType=TIMESTAMP},
+      <if test="birthday != null">
+        #{birthday,jdbcType=TIMESTAMP},
       </if>
-      <if test="infoAge != null">
-        #{infoAge,jdbcType=INTEGER},
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
       </if>
-      <if test="infoBirthplace != null">
-        #{infoBirthplace,jdbcType=VARCHAR},
+      <if test="birthplace != null">
+        #{birthplace,jdbcType=VARCHAR},
       </if>
-      <if test="infoResidence != null">
-        #{infoResidence,jdbcType=VARCHAR},
+      <if test="residence != null">
+        #{residence,jdbcType=VARCHAR},
       </if>
-      <if test="infoPerformingExperience != null">
-        #{infoPerformingExperience,jdbcType=VARCHAR},
+      <if test="performingExperience != null">
+        #{performingExperience,jdbcType=VARCHAR},
       </if>
-      <if test="infoFamilyComposition != null">
-        #{infoFamilyComposition,jdbcType=VARCHAR},
+      <if test="familyComposition != null">
+        #{familyComposition,jdbcType=VARCHAR},
       </if>
-      <if test="infoOccupation != null">
-        #{infoOccupation,jdbcType=VARCHAR},
+      <if test="occupation != null">
+        #{occupation,jdbcType=VARCHAR},
       </if>
-      <if test="infoSchoolsMajors != null">
-        #{infoSchoolsMajors,jdbcType=VARCHAR},
+      <if test="schoolsMajors != null">
+        #{schoolsMajors,jdbcType=VARCHAR},
       </if>
-      <if test="infoGrade != null">
-        #{infoGrade,jdbcType=VARCHAR},
+      <if test="grade != null">
+        #{grade,jdbcType=VARCHAR},
       </if>
-      <if test="infoPlaceOfStudy != null">
-        #{infoPlaceOfStudy,jdbcType=VARCHAR},
+      <if test="placeOfStudy != null">
+        #{placeOfStudy,jdbcType=VARCHAR},
       </if>
-      <if test="infoPhoneNum != null">
-        #{infoPhoneNum,jdbcType=VARCHAR},
+      <if test="phoneNum != null">
+        #{phoneNum,jdbcType=VARCHAR},
       </if>
-      <if test="infoQq != null">
-        #{infoQq,jdbcType=INTEGER},
+      <if test="qq != null">
+        #{qq,jdbcType=INTEGER},
       </if>
-      <if test="infoEmail != null">
-        #{infoEmail,jdbcType=VARCHAR},
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
       </if>
-      <if test="infoWeibo != null">
-        #{infoWeibo,jdbcType=VARCHAR},
+      <if test="weibo != null">
+        #{weibo,jdbcType=VARCHAR},
       </if>
-      <if test="infoHomePhone != null">
-        #{infoHomePhone,jdbcType=VARCHAR},
+      <if test="homePhone != null">
+        #{homePhone,jdbcType=VARCHAR},
       </if>
-      <if test="infoSpecialty != null">
-        #{infoSpecialty,jdbcType=VARCHAR},
+      <if test="specialty != null">
+        #{specialty,jdbcType=VARCHAR},
       </if>
-      <if test="infoInterest != null">
-        #{infoInterest,jdbcType=VARCHAR},
+      <if test="interest != null">
+        #{interest,jdbcType=VARCHAR},
       </if>
-      <if test="infoAwards != null">
-        #{infoAwards,jdbcType=VARCHAR},
+      <if test="awards != null">
+        #{awards,jdbcType=VARCHAR},
       </if>
-      <if test="infoDream != null">
-        #{infoDream,jdbcType=VARCHAR},
+      <if test="dream != null">
+        #{dream,jdbcType=VARCHAR},
       </if>
-      <if test="infoIdol != null">
-        #{infoIdol,jdbcType=VARCHAR},
+      <if test="idol != null">
+        #{idol,jdbcType=VARCHAR},
       </if>
-      <if test="infoComic != null">
-        #{infoComic,jdbcType=VARCHAR},
+      <if test="comic != null">
+        #{comic,jdbcType=VARCHAR},
       </if>
-      <if test="infoFilmWorks != null">
-        #{infoFilmWorks,jdbcType=VARCHAR},
+      <if test="filmWorks != null">
+        #{filmWorks,jdbcType=VARCHAR},
       </if>
-      <if test="infoWebsite != null">
-        #{infoWebsite,jdbcType=VARCHAR},
+      <if test="website != null">
+        #{website,jdbcType=VARCHAR},
       </if>
-      <if test="infoApp != null">
-        #{infoApp,jdbcType=VARCHAR},
+      <if test="app != null">
+        #{app,jdbcType=VARCHAR},
       </if>
-      <if test="infoWantToSay != null">
-        #{infoWantToSay,jdbcType=VARCHAR},
+      <if test="wantToSay != null">
+        #{wantToSay,jdbcType=VARCHAR},
       </if>
-      <if test="infoVideo1Url != null">
-        #{infoVideo1Url,jdbcType=VARCHAR},
+      <if test="video1Url != null">
+        #{video1Url,jdbcType=VARCHAR},
       </if>
-      <if test="infoVideo2Url != null">
-        #{infoVideo2Url,jdbcType=VARCHAR},
+      <if test="video2Url != null">
+        #{video2Url,jdbcType=VARCHAR},
       </if>
-      <if test="infoMugshotImgUrl != null">
-        #{infoMugshotImgUrl,jdbcType=VARCHAR},
+      <if test="mugShotImgUrl != null">
+        #{mugShotImgUrl,jdbcType=VARCHAR},
       </if>
-      <if test="infoHalflengthImgUrl != null">
-        #{infoHalflengthImgUrl,jdbcType=VARCHAR},
+      <if test="halfLengthImgUrl != null">
+        #{halfLengthImgUrl,jdbcType=VARCHAR},
       </if>
-      <if test="infoFullbodyImgUrl != null">
-        #{infoFullbodyImgUrl,jdbcType=VARCHAR},
+      <if test="fullBodyImgUrl != null">
+        #{fullBodyImgUrl,jdbcType=VARCHAR},
       </if>
-      <if test="infoSerialNum != null">
-        #{infoSerialNum,jdbcType=CHAR},
+      <if test="serialNum != null">
+        #{serialNum,jdbcType=CHAR},
       </if>
-      <if test="infoCreateTime != null">
-        #{infoCreateTime,jdbcType=TIMESTAMP},
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.xiongmengyingshi.v17.entity.PersonalInfo">
     update v17_personal_info
     <set>
-      <if test="infoName != null">
-        info_name = #{infoName,jdbcType=VARCHAR},
+      <if test="name != null">
+        info_name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="infoBirthday != null">
-        info_birthday = #{infoBirthday,jdbcType=TIMESTAMP},
+      <if test="birthday != null">
+        info_birthday = #{birthday,jdbcType=TIMESTAMP},
       </if>
-      <if test="infoAge != null">
-        info_age = #{infoAge,jdbcType=INTEGER},
+      <if test="age != null">
+        info_age = #{age,jdbcType=INTEGER},
       </if>
-      <if test="infoBirthplace != null">
-        info_birthplace = #{infoBirthplace,jdbcType=VARCHAR},
+      <if test="birthplace != null">
+        info_birthplace = #{birthplace,jdbcType=VARCHAR},
       </if>
-      <if test="infoResidence != null">
-        info_residence = #{infoResidence,jdbcType=VARCHAR},
+      <if test="residence != null">
+        info_residence = #{residence,jdbcType=VARCHAR},
       </if>
-      <if test="infoPerformingExperience != null">
-        info_performing_experience = #{infoPerformingExperience,jdbcType=VARCHAR},
+      <if test="performingExperience != null">
+        info_performing_experience = #{performingExperience,jdbcType=VARCHAR},
       </if>
-      <if test="infoFamilyComposition != null">
-        info_family_composition = #{infoFamilyComposition,jdbcType=VARCHAR},
+      <if test="familyComposition != null">
+        info_family_composition = #{familyComposition,jdbcType=VARCHAR},
       </if>
-      <if test="infoOccupation != null">
-        info_occupation = #{infoOccupation,jdbcType=VARCHAR},
+      <if test="occupation != null">
+        info_occupation = #{occupation,jdbcType=VARCHAR},
       </if>
-      <if test="infoSchoolsMajors != null">
-        info_schools_majors = #{infoSchoolsMajors,jdbcType=VARCHAR},
+      <if test="schoolsMajors != null">
+        info_schools_majors = #{schoolsMajors,jdbcType=VARCHAR},
       </if>
-      <if test="infoGrade != null">
-        info_grade = #{infoGrade,jdbcType=VARCHAR},
+      <if test="grade != null">
+        info_grade = #{grade,jdbcType=VARCHAR},
       </if>
-      <if test="infoPlaceOfStudy != null">
-        info_place_of_study = #{infoPlaceOfStudy,jdbcType=VARCHAR},
+      <if test="placeOfStudy != null">
+        info_place_of_study = #{placeOfStudy,jdbcType=VARCHAR},
       </if>
-      <if test="infoPhoneNum != null">
-        info_phone_num = #{infoPhoneNum,jdbcType=VARCHAR},
+      <if test="phoneNum != null">
+        info_phone_num = #{phoneNum,jdbcType=VARCHAR},
       </if>
-      <if test="infoQq != null">
-        info_qq = #{infoQq,jdbcType=INTEGER},
+      <if test="qq != null">
+        info_qq = #{qq,jdbcType=INTEGER},
       </if>
-      <if test="infoEmail != null">
-        info_email = #{infoEmail,jdbcType=VARCHAR},
+      <if test="email != null">
+        info_email = #{email,jdbcType=VARCHAR},
       </if>
-      <if test="infoWeibo != null">
-        info_weibo = #{infoWeibo,jdbcType=VARCHAR},
+      <if test="weibo != null">
+        info_weibo = #{weibo,jdbcType=VARCHAR},
       </if>
-      <if test="infoHomePhone != null">
-        info_home_phone = #{infoHomePhone,jdbcType=VARCHAR},
+      <if test="homePhone != null">
+        info_home_phone = #{homePhone,jdbcType=VARCHAR},
       </if>
-      <if test="infoSpecialty != null">
-        info_specialty = #{infoSpecialty,jdbcType=VARCHAR},
+      <if test="specialty != null">
+        info_specialty = #{specialty,jdbcType=VARCHAR},
       </if>
-      <if test="infoInterest != null">
-        info_interest = #{infoInterest,jdbcType=VARCHAR},
+      <if test="interest != null">
+        info_interest = #{interest,jdbcType=VARCHAR},
       </if>
-      <if test="infoAwards != null">
-        info_awards = #{infoAwards,jdbcType=VARCHAR},
+      <if test="awards != null">
+        info_awards = #{awards,jdbcType=VARCHAR},
       </if>
-      <if test="infoDream != null">
-        info_dream = #{infoDream,jdbcType=VARCHAR},
+      <if test="dream != null">
+        info_dream = #{dream,jdbcType=VARCHAR},
       </if>
-      <if test="infoIdol != null">
-        info_idol = #{infoIdol,jdbcType=VARCHAR},
+      <if test="idol != null">
+        info_idol = #{idol,jdbcType=VARCHAR},
       </if>
-      <if test="infoComic != null">
-        info_comic = #{infoComic,jdbcType=VARCHAR},
+      <if test="comic != null">
+        info_comic = #{comic,jdbcType=VARCHAR},
       </if>
-      <if test="infoFilmWorks != null">
-        info_film_works = #{infoFilmWorks,jdbcType=VARCHAR},
+      <if test="filmWorks != null">
+        info_film_works = #{filmWorks,jdbcType=VARCHAR},
       </if>
-      <if test="infoWebsite != null">
-        info_website = #{infoWebsite,jdbcType=VARCHAR},
+      <if test="website != null">
+        info_website = #{website,jdbcType=VARCHAR},
       </if>
-      <if test="infoApp != null">
-        info_app = #{infoApp,jdbcType=VARCHAR},
+      <if test="app != null">
+        info_app = #{app,jdbcType=VARCHAR},
       </if>
-      <if test="infoWantToSay != null">
-        info_want_to_say = #{infoWantToSay,jdbcType=VARCHAR},
+      <if test="wantToSay != null">
+        info_want_to_say = #{wantToSay,jdbcType=VARCHAR},
       </if>
-      <if test="infoVideo1Url != null">
-        info_video1_url = #{infoVideo1Url,jdbcType=VARCHAR},
+      <if test="video1Url != null">
+        info_video1_url = #{video1Url,jdbcType=VARCHAR},
       </if>
-      <if test="infoVideo2Url != null">
-        info_video2_url = #{infoVideo2Url,jdbcType=VARCHAR},
+      <if test="video2Url != null">
+        info_video2_url = #{video2Url,jdbcType=VARCHAR},
       </if>
-      <if test="infoMugshotImgUrl != null">
-        info_mugshot_img_url = #{infoMugshotImgUrl,jdbcType=VARCHAR},
+      <if test="mugShotImgUrl != null">
+        info_mugshot_img_url = #{mugShotImgUrl,jdbcType=VARCHAR},
       </if>
-      <if test="infoHalflengthImgUrl != null">
-        info_halflength_img_url = #{infoHalflengthImgUrl,jdbcType=VARCHAR},
+      <if test="halfLengthImgUrl != null">
+        info_halflength_img_url = #{halfLengthImgUrl,jdbcType=VARCHAR},
       </if>
-      <if test="infoFullbodyImgUrl != null">
-        info_fullbody_img_url = #{infoFullbodyImgUrl,jdbcType=VARCHAR},
+      <if test="fullBodyImgUrl != null">
+        info_fullbody_img_url = #{fullBodyImgUrl,jdbcType=VARCHAR},
       </if>
-      <if test="infoSerialNum != null">
-        info_serial_num = #{infoSerialNum,jdbcType=CHAR},
+      <if test="serialNum != null">
+        info_serial_num = #{serialNum,jdbcType=CHAR},
       </if>
-      <if test="infoCreateTime != null">
-        info_create_time = #{infoCreateTime,jdbcType=TIMESTAMP},
+      <if test="createTime != null">
+        info_create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
     </set>
     where info_id = #{infoId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.xiongmengyingshi.v17.entity.PersonalInfo">
     update v17_personal_info
-    set info_name = #{infoName,jdbcType=VARCHAR},
-      info_birthday = #{infoBirthday,jdbcType=TIMESTAMP},
-      info_age = #{infoAge,jdbcType=INTEGER},
-      info_birthplace = #{infoBirthplace,jdbcType=VARCHAR},
-      info_residence = #{infoResidence,jdbcType=VARCHAR},
-      info_performing_experience = #{infoPerformingExperience,jdbcType=VARCHAR},
-      info_family_composition = #{infoFamilyComposition,jdbcType=VARCHAR},
-      info_occupation = #{infoOccupation,jdbcType=VARCHAR},
-      info_schools_majors = #{infoSchoolsMajors,jdbcType=VARCHAR},
-      info_grade = #{infoGrade,jdbcType=VARCHAR},
-      info_place_of_study = #{infoPlaceOfStudy,jdbcType=VARCHAR},
-      info_phone_num = #{infoPhoneNum,jdbcType=VARCHAR},
-      info_qq = #{infoQq,jdbcType=INTEGER},
-      info_email = #{infoEmail,jdbcType=VARCHAR},
-      info_weibo = #{infoWeibo,jdbcType=VARCHAR},
-      info_home_phone = #{infoHomePhone,jdbcType=VARCHAR},
-      info_specialty = #{infoSpecialty,jdbcType=VARCHAR},
-      info_interest = #{infoInterest,jdbcType=VARCHAR},
-      info_awards = #{infoAwards,jdbcType=VARCHAR},
-      info_dream = #{infoDream,jdbcType=VARCHAR},
-      info_idol = #{infoIdol,jdbcType=VARCHAR},
-      info_comic = #{infoComic,jdbcType=VARCHAR},
-      info_film_works = #{infoFilmWorks,jdbcType=VARCHAR},
-      info_website = #{infoWebsite,jdbcType=VARCHAR},
-      info_app = #{infoApp,jdbcType=VARCHAR},
-      info_want_to_say = #{infoWantToSay,jdbcType=VARCHAR},
-      info_video1_url = #{infoVideo1Url,jdbcType=VARCHAR},
-      info_video2_url = #{infoVideo2Url,jdbcType=VARCHAR},
-      info_mugshot_img_url = #{infoMugshotImgUrl,jdbcType=VARCHAR},
-      info_halflength_img_url = #{infoHalflengthImgUrl,jdbcType=VARCHAR},
-      info_fullbody_img_url = #{infoFullbodyImgUrl,jdbcType=VARCHAR},
-      info_serial_num = #{infoSerialNum,jdbcType=CHAR},
-      info_create_time = #{infoCreateTime,jdbcType=TIMESTAMP}
+    set info_name = #{name,jdbcType=VARCHAR},
+      info_birthday = #{birthday,jdbcType=TIMESTAMP},
+      info_age = #{age,jdbcType=INTEGER},
+      info_birthplace = #{birthplace,jdbcType=VARCHAR},
+      info_residence = #{residence,jdbcType=VARCHAR},
+      info_performing_experience = #{performingExperience,jdbcType=VARCHAR},
+      info_family_composition = #{familyComposition,jdbcType=VARCHAR},
+      info_occupation = #{occupation,jdbcType=VARCHAR},
+      info_schools_majors = #{schoolsMajors,jdbcType=VARCHAR},
+      info_grade = #{grade,jdbcType=VARCHAR},
+      info_place_of_study = #{placeOfStudy,jdbcType=VARCHAR},
+      info_phone_num = #{phoneNum,jdbcType=VARCHAR},
+      info_qq = #{qq,jdbcType=INTEGER},
+      info_email = #{email,jdbcType=VARCHAR},
+      info_weibo = #{weibo,jdbcType=VARCHAR},
+      info_home_phone = #{homePhone,jdbcType=VARCHAR},
+      info_specialty = #{specialty,jdbcType=VARCHAR},
+      info_interest = #{interest,jdbcType=VARCHAR},
+      info_awards = #{awards,jdbcType=VARCHAR},
+      info_dream = #{dream,jdbcType=VARCHAR},
+      info_idol = #{idol,jdbcType=VARCHAR},
+      info_comic = #{comic,jdbcType=VARCHAR},
+      info_film_works = #{filmWorks,jdbcType=VARCHAR},
+      info_website = #{website,jdbcType=VARCHAR},
+      info_app = #{app,jdbcType=VARCHAR},
+      info_want_to_say = #{wantToSay,jdbcType=VARCHAR},
+      info_video1_url = #{video1Url,jdbcType=VARCHAR},
+      info_video2_url = #{video2Url,jdbcType=VARCHAR},
+      info_mugshot_img_url = #{mugShotImgUrl,jdbcType=VARCHAR},
+      info_halflength_img_url = #{halfLengthImgUrl,jdbcType=VARCHAR},
+      info_fullbody_img_url = #{fullBodyImgUrl,jdbcType=VARCHAR},
+      info_serial_num = #{serialNum,jdbcType=CHAR},
+      info_create_time = #{createTime,jdbcType=TIMESTAMP}
     where info_id = #{infoId,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -24,7 +24,7 @@ public class FileUtils {
             return null;
         }
         String basePath = "src/main/webapp/UploadFile/"+type;
-        String fileName = getFileName(file.getOriginalFilename(),infoId);
+        String fileName = type+getFileName(file.getOriginalFilename(),infoId);
         String path = basePath+File.separator+fileName;
         logger.info("the path of the upload file is {}" ,path);
         File localFile = new File(path);

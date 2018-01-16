@@ -9,7 +9,7 @@ public class EnrollInfoForm {
 
     private String name;
     private String birthday;
-    private int age;
+//    private int age;
     private String birthplace;
     private String residence;
     private String performingExperience;
@@ -56,13 +56,13 @@ public class EnrollInfoForm {
         this.birthday = birthday;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
+//    public int getAge() {
+//        return age;
+//    }
+//
+//    public void setAge(int age) {
+//        this.age = age;
+//    }
 
     public String getBirthplace() {
         return birthplace;

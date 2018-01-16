@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -57,15 +58,28 @@ public class EnrollController {
     }
 
     @ApiOperation(value = "保存报名信息", notes = "")
-    @RequestMapping(value = "/saveEnrollInfo",method = RequestMethod.POST)
+    @RequestMapping(value = "/saveEnrollInfo",method = RequestMethod.POST,consumes = "multipart/form-data")
     public @ResponseBody
     SaveEnrollInfoVO saveEnrollInfo(EnrollInfoForm form){
         SaveEnrollInfoVO vo = new SaveEnrollInfoVO();
         //保存基本信息
         PersonalInfo personalInfo = new PersonalInfo();
         personalInfo.setName(form.getName());
-        personalInfo.setBirthday(form.getBirthday());
-        personalInfo.setAge(form.getAge());
+
+        Date birthday = new Date();
+        try {
+            birthday = new SimpleDateFormat("yyyy-MM-dd").parse(form.getBirthday());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        personalInfo.setBirthday(birthday);
+        int age = 0;
+        try {
+            age = CommonUtils.getAge(birthday);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        personalInfo.setAge(age);
         personalInfo.setBirthplace(form.getBirthplace());
         personalInfo.setResidence(form.getResidence());
         personalInfo.setPerformingExperience(form.getPerformingExperience());
