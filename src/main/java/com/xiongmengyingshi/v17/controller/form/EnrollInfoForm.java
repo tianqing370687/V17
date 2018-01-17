@@ -288,6 +288,36 @@ public class EnrollInfoForm {
         this.fullBodyImg = fullBodyImg;
     }
 
+    @Override
+    public String toString() {
+        return "EnrollInfoForm{" +
+                "name='" + name + '\'' +
+                ", birthday='" + birthday + '\'' +
+                ", birthplace='" + birthplace + '\'' +
+                ", residence='" + residence + '\'' +
+                ", performingExperience='" + performingExperience + '\'' +
+                ", familyComposition='" + familyComposition + '\'' +
+                ", occupation='" + occupation + '\'' +
+                ", schoolsMajors='" + schoolsMajors + '\'' +
+                ", grade='" + grade + '\'' +
+                ", placeOfStudy='" + placeOfStudy + '\'' +
+                ", phoneNum='" + phoneNum + '\'' +
+                ", qq=" + qq +
+                ", email='" + email + '\'' +
+                ", weibo='" + weibo + '\'' +
+                ", homePhone='" + homePhone + '\'' +
+                ", specialty='" + specialty + '\'' +
+                ", interest='" + interest + '\'' +
+                ", awards='" + awards + '\'' +
+                ", dream='" + dream + '\'' +
+                ", idol='" + idol + '\'' +
+                ", comic='" + comic + '\'' +
+                ", filmWorks='" + filmWorks + '\'' +
+                ", website='" + website + '\'' +
+                ", app='" + app + '\'' +
+                ", wantToSay='" + wantToSay + '\'' +
+                '}';
+    }
 
 
 

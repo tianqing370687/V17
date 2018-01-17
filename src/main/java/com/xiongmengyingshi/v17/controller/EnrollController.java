@@ -61,6 +61,9 @@ public class EnrollController {
     @RequestMapping(value = "/saveEnrollInfo",method = RequestMethod.POST,consumes = "multipart/form-data")
     public @ResponseBody
     SaveEnrollInfoVO saveEnrollInfo(EnrollInfoForm form){
+
+        logger.info("form : {}",form);
+
         SaveEnrollInfoVO vo = new SaveEnrollInfoVO();
         //保存基本信息
         PersonalInfo personalInfo = new PersonalInfo();

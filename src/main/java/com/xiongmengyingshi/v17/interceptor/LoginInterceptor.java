@@ -29,13 +29,13 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         logger.info("=================LoginInterceptor:preHandle:{}===============",request.getRequestURI());
 
-        if (request.getHeader(HttpHeaders.ORIGIN) != null) {
-            response.addHeader("Access-Control-Allow-Origin", "*");
-            response.addHeader("Access-Control-Allow-Credentials", "true");
-            response.addHeader("Access-Control-Allow-Methods", "POST,GET,OPTIONS");
-            response.addHeader("Access-Control-Allow-Headers", "Content-Type");
-            response.addHeader("Access-Control-Max-Age", "3600");
-        }
+//        if (request.getHeader(HttpHeaders.ORIGIN) != null) {
+//            response.addHeader("Access-Control-Allow-Origin", "*");
+//            response.addHeader("Access-Control-Allow-Credentials", "true");
+//            response.addHeader("Access-Control-Allow-Methods", "POST,GET,OPTIONS");
+//            response.addHeader("Access-Control-Allow-Headers", "Content-Type");
+//            response.addHeader("Access-Control-Max-Age", "3600");
+//        }
 
         String requestUrl = request.getRequestURI();
         if(ignorelist.contains(requestUrl)){
