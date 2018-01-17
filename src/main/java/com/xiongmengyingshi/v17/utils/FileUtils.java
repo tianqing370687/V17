@@ -1,13 +1,11 @@
 package com.xiongmengyingshi.v17.utils;
 
-import com.xiongmengyingshi.v17.controller.EnrollController;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.math.BigInteger;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -16,7 +14,7 @@ import java.util.Date;
  */
 public class FileUtils {
 
-    private static Logger logger = LogManager.getLogger(EnrollController.class);
+    private static Logger logger = LogManager.getLogger(FileUtils.class);
 
     public static String uploadFile(String type, long infoId, MultipartFile file) throws IOException {
         if(file == null ||file.isEmpty()){

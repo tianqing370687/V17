@@ -1,5 +1,6 @@
 package com.xiongmengyingshi.v17.interceptor;
 
+import com.xiongmengyingshi.v17.constant.ErrCodeConstant;
 import com.xiongmengyingshi.v17.controller.EnrollController;
 import com.xiongmengyingshi.v17.session.UserSession;
 import org.apache.logging.log4j.LogManager;
@@ -11,6 +12,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -43,6 +45,8 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
         UserSession session = (UserSession) request.getSession().getAttribute("userSession");
 
         if(session == null){
+            PrintWriter out = response.getWriter();
+            out.write(ErrCodeConstant.LOGIN_FAIL_NO_PERMISSION);
             return false;
         }
 

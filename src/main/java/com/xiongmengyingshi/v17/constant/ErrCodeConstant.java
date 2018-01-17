@@ -29,7 +29,6 @@ public class ErrCodeConstant {
     * 保存报名信息失败
     * */
     public static final String ENROLL_INFO_FAIL_USER_EXIT = "1005";
-
     /*
     * 登录成功
     * */
@@ -58,8 +57,14 @@ public class ErrCodeConstant {
     *注册失败（用户名已存在）
     * */
     public static final String REGISTERED_FAIL_NAME_EXITED = "2006";
-
+    /*
+     *退出登录成功
+     * */
     public static final String EXIT_SUCCESS = "2007";
+    /*
+     *无权限访问，请登录
+     * */
+    public static final String LOGIN_FAIL_NO_PERMISSION= "2008";
 
 
 

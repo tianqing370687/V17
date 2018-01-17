@@ -33,10 +33,10 @@ public class CrmAdminServiceImpl implements CrmAdminService{
     public String register(String adminName,String adminPassword, String passwordSalt,String loginIP){
         Admin admin = adminMapper.selectByAdminName(adminName);
         if(admin != null){
+            logger.info("Registration failed, user already exists");
             return ErrCodeConstant.REGISTERED_FAIL_NAME_EXITED;
         }
         String password = CommonUtils.getMD5Str(adminPassword+CommonUtils.getMD5Str(passwordSalt));
-        logger.info("sakt length is {}",passwordSalt.length());
         logger.info("password is {}",password);
         admin = new Admin();
         admin.setAdminName(adminName);
@@ -46,7 +46,7 @@ public class CrmAdminServiceImpl implements CrmAdminService{
         admin.setLoginIP(loginIP);
 
         adminMapper.insert(admin);
-
+        logger.info("registration success");
         return ErrCodeConstant.REGISTERED_SUCCESS;
     }
 
@@ -57,6 +57,7 @@ public class CrmAdminServiceImpl implements CrmAdminService{
         Admin admin = adminMapper.selectByAdminName(adminName);
 
         if(admin == null){
+            logger.info("Login failed, user name does not exist");
             bo.setRetCode(ErrCodeConstant.LOGIN_FAIL_WRONG_USERNAME);
             return bo;
         }
@@ -71,9 +72,11 @@ public class CrmAdminServiceImpl implements CrmAdminService{
 
             bo.setRetCode(ErrCodeConstant.LOGIN_SUCCESS);
             bo.setAdmin(admin);
+            logger.info("login successful");
             return bo;
         }
 
+        logger.info("Login failed password");
         bo.setRetCode(ErrCodeConstant.LOGIN_FAIL_WRONG_PASSWORD);
         return bo;
 
@@ -82,6 +85,7 @@ public class CrmAdminServiceImpl implements CrmAdminService{
     public String changePassword(long adminId,String oldPassword,String newPassword ){
         Admin admin = adminMapper.selectByPrimaryKey(adminId);
         if(admin == null){
+            logger.info("User does not exist or the session fails");
             return ErrCodeConstant.CHANGE_PASSWORD_FAIL;
         }
         boolean isCorrect = (CommonUtils.getMD5Str(oldPassword+CommonUtils.getMD5Str(admin.getPasswordSalt()))).
@@ -91,9 +95,11 @@ public class CrmAdminServiceImpl implements CrmAdminService{
             String password = CommonUtils.getMD5Str(newPassword+CommonUtils.getMD5Str(admin.getPasswordSalt()));
             admin.setAdminPassword(password);
             adminMapper.updateByPrimaryKey(admin);
+            logger.info("password has been updated");
             return ErrCodeConstant.CHANGE_PASSWORD_SUCCESS;
         }
 
+        logger.info("Password change failed");
         return ErrCodeConstant.CHANGE_PASSWORD_FAIL;
     }
 
