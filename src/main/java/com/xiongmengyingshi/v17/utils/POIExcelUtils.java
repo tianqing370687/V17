@@ -154,7 +154,9 @@ public class POIExcelUtils {
                 //否则，直接写到输出流中
                 out = response.getOutputStream();
                 fileName = fileName+".xls";
-                response.setContentType("application/x-msdownload");
+                response.reset();
+                response.setContentType("application/vnd.ms-excel");        //改成输出excel文件
+//                response.setContentType("application/x-msdownload");
                 response.setHeader("Content-Disposition", "attachment; filename="
                         + URLEncoder.encode(fileName, "UTF-8"));
             }

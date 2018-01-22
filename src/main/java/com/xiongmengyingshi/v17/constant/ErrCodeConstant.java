@@ -66,6 +66,8 @@ public class ErrCodeConstant {
      * */
     public static final String LOGIN_FAIL_NO_PERMISSION= "2008";
 
+    public static final String GET_LIST_SUCCESS = "2009";
+
 
 
 

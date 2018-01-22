@@ -317,4 +317,46 @@ public class PersonalInfo {
         this.createTime = createTime;
     }
 
+
+    @Override
+    public String toString() {
+        return "PersonalInfo{" +
+                "infoId=" + infoId +
+                ", name='" + name + '\'' +
+                ", birthday=" + birthday +
+                ", age=" + age +
+                ", birthplace='" + birthplace + '\'' +
+                ", residence='" + residence + '\'' +
+                ", performingExperience='" + performingExperience + '\'' +
+                ", familyComposition='" + familyComposition + '\'' +
+                ", occupation='" + occupation + '\'' +
+                ", schoolsMajors='" + schoolsMajors + '\'' +
+                ", grade='" + grade + '\'' +
+                ", placeOfStudy='" + placeOfStudy + '\'' +
+                ", phoneNum='" + phoneNum + '\'' +
+                ", qq=" + qq +
+                ", email='" + email + '\'' +
+                ", weibo='" + weibo + '\'' +
+                ", homePhone='" + homePhone + '\'' +
+                ", specialty='" + specialty + '\'' +
+                ", interest='" + interest + '\'' +
+                ", awards='" + awards + '\'' +
+                ", dream='" + dream + '\'' +
+                ", idol='" + idol + '\'' +
+                ", comic='" + comic + '\'' +
+                ", filmWorks='" + filmWorks + '\'' +
+                ", website='" + website + '\'' +
+                ", app='" + app + '\'' +
+                ", wantToSay='" + wantToSay + '\'' +
+                ", video1Url='" + video1Url + '\'' +
+                ", video2Url='" + video2Url + '\'' +
+                ", mugShotImgUrl='" + mugShotImgUrl + '\'' +
+                ", halfLengthImgUrl='" + halfLengthImgUrl + '\'' +
+                ", fullBodyImgUrl='" + fullBodyImgUrl + '\'' +
+                ", serialNum='" + serialNum + '\'' +
+                ", createTime=" + createTime +
+                '}';
+    }
+
+
 }

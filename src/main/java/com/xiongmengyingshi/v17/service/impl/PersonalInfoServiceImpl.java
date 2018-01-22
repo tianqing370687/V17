@@ -124,7 +124,9 @@ public class PersonalInfoServiceImpl implements PersonalInfoService {
 
     private String uploadFile2OSS(MultipartFile file,String type, long infoId){
 
-        String objUrl = null;
+        File targetFile;
+
+        String objUrl = "";
 
         if(file == null ||file.isEmpty()){
             logger.info("the uploadfile is empty!");
@@ -143,7 +145,8 @@ public class PersonalInfoServiceImpl implements PersonalInfoService {
         boolean isSuccess;
 
         try {
-            isSuccess = utils.uploadFile(key,CommonUtils.convert(file));
+            targetFile = CommonUtils.convert(file);
+            isSuccess = utils.uploadFile(key,targetFile);
         } catch (IOException e) {
             e.printStackTrace();
             logger.info("MultipartFile file convert fail : {}",e.getMessage());
@@ -153,6 +156,7 @@ public class PersonalInfoServiceImpl implements PersonalInfoService {
         if(isSuccess){
             objUrl = ResourceUtils.getBundleValue4String("ali.file.url")+key;
             logger.info("the path of file is : {}",objUrl);
+            targetFile.delete();
             return objUrl;
         }
 

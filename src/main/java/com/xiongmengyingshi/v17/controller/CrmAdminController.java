@@ -2,7 +2,6 @@ package com.xiongmengyingshi.v17.controller;
 
 import com.xiongmengyingshi.v17.constant.ErrCodeConstant;
 import com.xiongmengyingshi.v17.controller.vo.LoginVO;
-import com.xiongmengyingshi.v17.entity.Admin;
 import com.xiongmengyingshi.v17.service.CrmAdminService;
 import com.xiongmengyingshi.v17.service.bo.LoginBO;
 import com.xiongmengyingshi.v17.session.UserSession;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * Created by ubuntu on 18-1-14.
@@ -37,27 +37,27 @@ public class CrmAdminController {
         String passwordSalt = CommonUtils.getRandomCode(6);
         String loginIP = CommonUtils.getIP(request);
         String retCode = crmAdminService.register(adminName,adminPassword,passwordSalt,loginIP);
-        if(ErrCodeConstant.REGISTERED_SUCCESS.equals(retCode)){
-            crmAdminService.saveSession(request,adminName);
-        }
         return retCode;
     }
 
     @ResponseBody
     @ApiOperation(value = "登录", notes = "")
     @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public LoginVO login(HttpServletRequest request,String adminName, String adminPassword){
+    public LoginVO login(HttpServletRequest request, String adminName, String adminPassword){
         LoginVO vo = new LoginVO();
         String loginIP = CommonUtils.getIP(request);
         LoginBO bo = crmAdminService.login(adminName,adminPassword,loginIP);
         vo.setRetCode(bo.getRetCode());
         if(ErrCodeConstant.LOGIN_SUCCESS.equals(bo.getRetCode())){
-//            crmAdminService.saveSession(request,adminName);
             UserSession session = new UserSession();
             session.setAdminId(new Long(bo.getAdmin().getAdminId()+""));
             session.setAdminName(adminName);
-            request.getSession().setAttribute("userSession",session);
 
+            HttpSession  httpSession= request.getSession(true);
+            String sessionId = httpSession.getId();
+            httpSession.setAttribute("userSession",session);
+
+            vo.setToken(sessionId);
             vo.setAdminId(bo.getAdmin().getAdminId());
             vo.setAdminName(bo.getAdmin().getAdminName());
         }

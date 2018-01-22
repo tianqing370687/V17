@@ -70,6 +70,7 @@ public class VerificationCodeServiceImpl implements VerificationCodeService {
 
         try {
             result = SMSUtils.senaSMS(phoneNum,smsContet);
+            logger.info("sms result : {}" ,result);
         } catch (ParseException e) {
             e.printStackTrace();
             logger.error("SMS send fail! : {}" ,e.getStackTrace().toString() );

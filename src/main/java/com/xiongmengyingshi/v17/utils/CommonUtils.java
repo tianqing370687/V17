@@ -169,7 +169,7 @@ public class CommonUtils {
     }
 
     public static void main(String[] args){
-        System.out.println(reverse("12345"));
+        System.out.println(getRandomCode(6));
     }
 
 }

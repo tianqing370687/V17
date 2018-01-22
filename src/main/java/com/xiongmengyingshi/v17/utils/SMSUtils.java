@@ -86,7 +86,7 @@ public class SMSUtils {
         String key = ResourceUtils.getBundleValue4String("sms.key");
 
         String body = java.net.URLEncoder.encode(smsContent);
-        String suffix = java.net.URLEncoder.encode("明睿互联");
+        String suffix = java.net.URLEncoder.encode("熊盟V17声优");
         String content = body + java.net.URLEncoder.encode("【") + suffix + java.net.URLEncoder.encode("】");
 
         long time = CommonUtils.getGMTTime();//获取格林尼治时间
@@ -99,6 +99,15 @@ public class SMSUtils {
         System.out.println("send sms result : " + result);
 
         return result;
+    }
+
+    public static void main(String[] args){
+        try {
+            senaSMS("13162732093","只是一条测试短信");
+        } catch (ParseException e) {
+            e.printStackTrace();
+            System.out.println("xxxxxxxxxxxxx");
+        }
     }
 
 }

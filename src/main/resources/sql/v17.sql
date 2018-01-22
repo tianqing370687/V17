@@ -47,7 +47,7 @@ CREATE TABLE `v17_personal_info` (
   `info_grade` varchar(200) NOT NULL COMMENT '年级',
   `info_place_of_study` varchar(200) NOT NULL COMMENT '就读地/工作地',
   `info_phone_num` varchar(200) NOT NULL COMMENT '手机',
-  `info_qq` int(12) NOT NULL COMMENT 'qq',
+  `info_qq` BIGINT(11) NOT NULL COMMENT 'qq',
   `info_email` varchar(200) NOT NULL COMMENT '邮箱',
   `info_weibo` varchar(200) DEFAULT NULL COMMENT '微博',
   `info_home_phone` varchar(200) DEFAULT NULL COMMENT '家庭电话',
@@ -80,3 +80,7 @@ CREATE TABLE `v17_verification_code` (
   `verification_code` char(6) NOT NULL DEFAULT '' COMMENT '验证码',
   PRIMARY KEY (`phone_num`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `v17_admin` VALUES ('1', 'admin', '020ba4146850d5ffbd026efda066cad2', '61904', '2018-01-19 11:21:09', '0:0:0:0:0:0:0:1');
+
+alter table v17_personal_info MODIFY info_qq BIGINT(11);

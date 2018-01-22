@@ -6,6 +6,7 @@ package com.xiongmengyingshi.v17.session;
 public class UserSession {
 
     private long adminId;
+
     private String adminName;
 
     public long getAdminId() {
@@ -23,5 +24,15 @@ public class UserSession {
     public void setAdminName(String adminName) {
         this.adminName = adminName;
     }
+
+
+    @Override
+    public String toString() {
+        return "UserSession{" +
+                "adminId=" + adminId +
+                ", adminName='" + adminName + '\'' +
+                '}';
+    }
+
 
 }
