@@ -59,6 +59,18 @@ public class CrmPersonalInfoController {
         return vo;
     }
 
+    @ResponseBody
+    @ApiOperation(value = "根据ID删除信息", notes = "")
+    @RequestMapping(value = "/deletePersonInfoById",method = RequestMethod.POST)
+    public String deletePersonInfoById(int infoId){
+        int result = personalInfoService.deletePersonalInfobyId(infoId);
+        if(result > 0){
+            return ErrCodeConstant.DELETE_PERSONAL_INFO_SUCCESS;
+        }else {
+            return ErrCodeConstant.DELETE_PERSONAL_INFO_FAIL;
+        }
+    }
+
 //    @ResponseBody
 //    @ApiOperation(value = "导出excel", notes = "")
 //    @RequestMapping(value = "/excelExport",method = RequestMethod.GET)
@@ -110,36 +122,6 @@ public class CrmPersonalInfoController {
     @RequestMapping(value = "/excelExport",method = RequestMethod.GET)
     public void excelExport(HttpServletResponse response){
 
-//        POIExcelUtils utils = new POIExcelUtils(response,"report","sheet1");
-//        String titleColumn[] = {
-//                "infoId", "name", "birthday", "age", "birthplace",
-//                "residence", "performingExperience", "familyComposition", "occupation", "schoolsMajors",
-//                "grade", "placeOfStudy", "phoneNum", "qq", "email",
-//                "weibo", "homePhone",  "specialty", "interest", "awards",
-//                "dream", "idol", "comic", "filmWorks", "website",
-//                "app", "wantToSay", "video1Url", "video2Url", "mugShotImgUrl",
-//                "halfLengthImgUrl", "fullBodyImgUrl", "serialNum", "createTime",
-//        };
-//
-//        String titleName[] = {
-//                "编号", "姓名", "生日", "年龄",
-//                "出生地", "现住地", "演艺经历",  "家庭构成",
-//                "职业", "学校与专业", "年级",  "就读地/工作地",
-//                "手机", "QQ", "Email", "微博",
-//                "家庭电话", "特长", "兴趣", "获奖情况",
-//                "梦想", "喜欢的艺人、偶像或配音演员", "喜欢的动漫、游戏作品", "喜欢的影视作品",
-//                "常去的网站", "常用的手机APP", "想对你未来可能开始的声优/声优偶像生涯说点什么", "配音DEMON/声线展示视频地址",
-//                "其他才艺展示视频地址", "大头贴", "半身照", "全身照",
-//                "序列号", "报名时间",
-//        };
-//
-//        int[] titleSize = {
-//                5,20,20,20,20,20,20,20,20,20,
-//                20,20,20,20,20,20,20,20,20,20,
-//                20,20,20,20,20,20,20,20,20,20,
-//                20,20,20,20,20
-//        };
-
         List<PersonalInfo> list = personalInfoService.listPersonalInfoByAll();
 
         for (PersonalInfo info:list) {
@@ -188,11 +170,12 @@ public class CrmPersonalInfoController {
         fieldMap.put("serialNum", "序列号");
         fieldMap.put("createTime", "报名时间");
 
-        String sheetName = "报名信息表_"+(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+        String sheetName = "page1";
+        String fileName = "v17_personInfo_"+(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
         int sheetSize = 65535;
 
         try {
-            ExcelUtil.listToExcel(list,fieldMap,sheetName,sheetSize,response);
+            ExcelUtil.listToExcel(list,fieldMap,sheetName,fileName,sheetSize,response);
         } catch (ExcelException e) {
             logger.info("export excel error!");
             e.printStackTrace();

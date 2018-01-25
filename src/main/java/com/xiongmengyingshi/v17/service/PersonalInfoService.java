@@ -25,5 +25,6 @@ public interface PersonalInfoService {
 
     String getSerialNum(Integer infoId);
 
+    int deletePersonalInfobyId(int infoId);
 
 }

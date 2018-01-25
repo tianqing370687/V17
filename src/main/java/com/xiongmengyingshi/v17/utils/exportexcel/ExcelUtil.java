@@ -129,12 +129,10 @@ public class ExcelUtil {
             List<T> list ,
             LinkedHashMap<String,String> fieldMap,
             String sheetName,
+            String fileName,
             int sheetSize,
             HttpServletResponse response
     ) throws ExcelException{
-
-        //设置默认文件名为当前时间：年月日时分秒
-        String fileName=new SimpleDateFormat("yyyyMMddhhmmss").format(new Date()).toString();
 
         //设置response头信息
         response.reset();
@@ -174,10 +172,11 @@ public class ExcelUtil {
             List<T> list ,
             LinkedHashMap<String,String> fieldMap,
             String sheetName,
+            String fileName,
             HttpServletResponse response
     ) throws ExcelException{
 
-        listToExcel(list, fieldMap, sheetName, 65535, response);
+        listToExcel(list, fieldMap, sheetName,fileName, 65535, response);
     }
 
     /**
@@ -493,74 +492,6 @@ public class ExcelUtil {
 
     }
 
-//    /**
-//     * @MethodName  : fillSheet
-//     * @Description : 向工作表中填充数据
-//     * @param sheet     工作表
-//     * @param list  数据源
-//     * @param fieldMap 中英文字段对应关系的Map
-//     * @param firstIndex    开始索引
-//     * @param lastIndex 结束索引
-//     */
-//    private static <T> void fillSheet(
-//            WritableSheet sheet,
-//            List<T> list,
-//            LinkedHashMap<String,String> fieldMap,
-//            int firstIndex,
-//            int lastIndex
-//    )throws Exception{
-//
-//        //定义存放英文字段名和中文字段名的数组
-//        String[] enFields=new String[fieldMap.size()];
-//        String[] cnFields=new String[fieldMap.size()];
-//
-//        //填充数组
-//        int count=0;
-//        for(Map.Entry<String,String> entry:fieldMap.entrySet()){
-//            enFields[count]=entry.getKey();
-//            cnFields[count]=entry.getValue();
-//            count++;
-//        }
-//        //填充表头
-//        for(int i=0;i<cnFields.length;i++){
-//            Label label=new Label(i,0,cnFields[i]);
-//            sheet.addCell(label);
-//        }
-//
-//        //填充内容
-//        int rowNo=1;
-//        for(int index=firstIndex;index<=lastIndex;index++){
-//            //获取单个对象
-//            T item=list.get(index);
-//            for(int i=0;i<enFields.length;i++){
-//                Object objValue=getFieldValueByNameSequence(enFields[i], item);
-//                String fieldValue = null;
-//
-//
-//                if(objValue!=null&&objValue instanceof Number){
-//                    fieldValue = objValue.toString();
-//                    if(fieldValue.length()>10){
-//                        Label label =new Label(i,rowNo,fieldValue);
-//                        sheet.addCell(label);
-//                    }else{
-//                        jxl.write.Number numb = new jxl.write.Number(i,rowNo,new Double(fieldValue.toString()));
-//                        sheet.addCell(numb);
-//                    }
-//                }else{
-//                    fieldValue=objValue==null ? "" : objValue.toString();
-//                    Label label =new Label(i,rowNo,fieldValue);
-//                    sheet.addCell(label);
-//                }
-//
-//            }
-//
-//            rowNo++;
-//        }
-//
-//        //设置自动列宽
-//        setColumnAutoSize(sheet, 5);
-//    }
-
     /**
      * @MethodName  : fillSheet
      * @Description : 向工作表中填充数据
@@ -604,23 +535,6 @@ public class ExcelUtil {
                 Object objValue=getFieldValueByNameSequence(enFields[i], item);
                 String fieldValue = null;
 
-
-//                if(objValue!=null&&objValue instanceof Number){
-//                    fieldValue = objValue.toString();
-//                    if(fieldValue.length()>10){
-//                        Label label =new Label(i,rowNo,fieldValue);
-//                        sheet.addCell(label);
-//                    }else{
-//                        jxl.write.Number numb = new jxl.write.Number(i,rowNo,new Double(fieldValue.toString()));
-//                        sheet.addCell(numb);
-//                    }
-//                }else{
-//                    fieldValue=objValue==null ? "" : objValue.toString();
-//                    Label label =new Label(i,rowNo,fieldValue);
-//                    sheet.addCell(label);
-//                }
-
-
                 if(objValue != null || !"".equals(objValue)){
                     if(objValue instanceof  Number){
                         fieldValue = objValue.toString();
@@ -646,19 +560,7 @@ public class ExcelUtil {
                     Label label =new Label(i,rowNo,fieldValue);
                     sheet.addCell(label);
                 }
-
-
-
-
-
-
-
-
-
-
-
             }
-
             rowNo++;
         }
 

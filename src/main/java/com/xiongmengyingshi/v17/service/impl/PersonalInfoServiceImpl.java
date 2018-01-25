@@ -12,6 +12,7 @@ import com.xiongmengyingshi.v17.utils.ResourceUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -50,6 +51,7 @@ public class PersonalInfoServiceImpl implements PersonalInfoService {
         return personalInfoMapper.selectInfoIdByParam(name,phoneNum);
     }
 
+//    @Async
     public void saveFileAndUpdateInfo(Integer userId, MultipartFile video1,
                                       MultipartFile video2,MultipartFile mugShotImg,MultipartFile halfLengthImg,MultipartFile fullBodyImg){
 
@@ -113,8 +115,12 @@ public class PersonalInfoServiceImpl implements PersonalInfoService {
     }
 
     public String getSerialNum(Integer infoId){
-        String serialNum = new SimpleDateFormat("yyMMddHHmmss").format(new Date())
-                + CommonUtils.strFormat(infoId+"",6);
+//        String serialNum = new SimpleDateFormat("yyMMddHHmmss").format(new Date())
+//                + CommonUtils.strFormat(infoId+"",6);
+//        PersonalInfo personalInfo = personalInfoMapper.selectByPrimaryKey(infoId);
+//        personalInfo.setSerialNum(serialNum);
+//        personalInfoMapper.updateByPrimaryKey(personalInfo);
+        String serialNum = "v172018"+CommonUtils.strFormat(infoId+"",4);
         PersonalInfo personalInfo = personalInfoMapper.selectByPrimaryKey(infoId);
         personalInfo.setSerialNum(serialNum);
         personalInfoMapper.updateByPrimaryKey(personalInfo);
@@ -161,5 +167,10 @@ public class PersonalInfoServiceImpl implements PersonalInfoService {
         }
 
         return objUrl;
+    }
+
+    public int deletePersonalInfobyId(int infoId){
+        int result = personalInfoMapper.deleteByPrimaryKey(infoId);
+        return result;
     }
 }
