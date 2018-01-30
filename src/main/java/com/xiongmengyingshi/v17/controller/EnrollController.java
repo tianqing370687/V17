@@ -37,7 +37,7 @@ public class EnrollController {
     private static Logger logger = LogManager.getLogger(EnrollController.class);
 
     @ApiOperation(value = "获取验证码", notes = "通过填写用户手机号，获取短信验证码")
-    @RequestMapping(value = "/getVerificationCode",method = RequestMethod.POST)
+    @RequestMapping(value = "/getVerificationCode",method = RequestMethod.POST,produces = "application/json; charset=utf-8")
     public @ResponseBody String getVerificationCode(String phoneNum){
         String retCode = verificationCodeService.getVerificationCode(phoneNum.trim());
         return retCode;
@@ -45,14 +45,14 @@ public class EnrollController {
 
     @ApiOperation(value = "重新获取验证码", notes = "通过填写用户手机号，获取短信验证码")
     @ApiImplicitParam(name = "phoneNum", value = "用户", required = true, dataType = "Long")
-    @RequestMapping(value = "/resendCode",method = RequestMethod.POST)
+    @RequestMapping(value = "/resendCode",method = RequestMethod.POST,produces = "application/json; charset=utf-8")
     public @ResponseBody String resendCode(String phoneNum){
         String retCode = verificationCodeService.getVerificationCode(phoneNum);
         return retCode;
     }
 
     @ApiOperation(value = "验证手机验证码", notes = "")
-    @RequestMapping(value = "/testCode",method = RequestMethod.POST)
+    @RequestMapping(value = "/testCode",method = RequestMethod.POST,produces = "application/json; charset=utf-8")
     public @ResponseBody String testCode(String phoneNum,String verificationCode){
         String retCode = verificationCodeService.testCode(phoneNum,verificationCode);
         return retCode;
@@ -105,6 +105,7 @@ public class EnrollController {
         personalInfo.setComic(form.getComic());
         personalInfo.setFilmWorks(form.getFilmWorks());
         personalInfo.setWebsite(form.getWebsite());
+        personalInfo.setApp(form.getApp());
         personalInfo.setWantToSay(form.getWantToSay());
         personalInfo.setCreateTime(new Date());
         String retCode = personalInfoService.savePersonalInfo(personalInfo);
@@ -115,7 +116,7 @@ public class EnrollController {
             return vo;
         }
         //查询id
-        int userId = personalInfoService.getPersonalInfoId(form.getName(),form.getPhoneNum());
+        int userId = personalInfoService.getPersonalInfoId(form.getPhoneNum());
 
         personalInfoService.saveFileAndUpdateInfo(userId,form.getVideo1(),form.getVideo2(),
                 form.getMugShotImg(),form.getHalfLengthImg(),form.getFullBodyImg());

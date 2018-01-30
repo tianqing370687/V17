@@ -97,7 +97,9 @@ public class HttpUtils {
     }
 
     public static void main(String[] args){
-        String result = sendGetRequest("http://www.baidu.com");
+//        String result = sendGetRequest("http://www.baidu.com");
+
+        System.out.println( CommonUtils.getMD5Str("shixiong123456"+CommonUtils.getMD5Str("61904")));
 
     }
 

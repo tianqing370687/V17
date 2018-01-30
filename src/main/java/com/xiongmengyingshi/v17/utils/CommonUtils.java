@@ -169,7 +169,8 @@ public class CommonUtils {
     }
 
     public static void main(String[] args){
-        System.out.println(getRandomCode(6));
+
+        System.out.println( CommonUtils.getMD5Str("shixiong123456"+CommonUtils.getMD5Str("61904")));
     }
 
 }

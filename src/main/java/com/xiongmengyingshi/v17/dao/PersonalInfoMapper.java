@@ -15,7 +15,7 @@ public interface PersonalInfoMapper {
 
     int insert(PersonalInfo record);
 
-    Integer selectInfoIdByParam(@Param("name")String name, @Param("phoneNum")String phoneNum);
+    Integer selectInfoIdByParam(@Param("phoneNum")String phoneNum);
 
     PersonalInfo selectByPrimaryKey(Integer infoId);
 

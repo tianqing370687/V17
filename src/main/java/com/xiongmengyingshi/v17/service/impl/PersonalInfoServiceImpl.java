@@ -39,7 +39,7 @@ public class PersonalInfoServiceImpl implements PersonalInfoService {
     private static Logger logger = LogManager.getLogger(PersonalInfoServiceImpl.class);
 
     public String savePersonalInfo(PersonalInfo personalInfo){
-        Integer infoId = personalInfoMapper.selectInfoIdByParam(personalInfo.getName(),personalInfo.getPhoneNum());
+        Integer infoId = personalInfoMapper.selectInfoIdByParam(personalInfo.getPhoneNum());
         if(infoId != null){
             return ErrCodeConstant.ENROLL_INFO_FAIL_USER_EXIT;
         }
@@ -47,8 +47,8 @@ public class PersonalInfoServiceImpl implements PersonalInfoService {
         return ErrCodeConstant.ENROLL_INFO_SUCCESS;
     }
 
-    public Integer getPersonalInfoId(String name,String phoneNum){
-        return personalInfoMapper.selectInfoIdByParam(name,phoneNum);
+    public Integer getPersonalInfoId(String phoneNum){
+        return personalInfoMapper.selectInfoIdByParam(phoneNum);
     }
 
 //    @Async
@@ -63,11 +63,11 @@ public class PersonalInfoServiceImpl implements PersonalInfoService {
 
 
         PersonalInfo personalInfo1 = personalInfoMapper.selectByPrimaryKey(userId);
-        personalInfo1.setVideo1Url(video1Url);
-        personalInfo1.setVideo2Url(video2Url);
-        personalInfo1.setMugShotImgUrl(mugShotImgUrl);
-        personalInfo1.setHalfLengthImgUrl(halfLengthImgUrl);
-        personalInfo1.setFullBodyImgUrl(fullBodyImgUrl);
+        personalInfo1.setVideo1Url((video1Url== null ? "":video1Url));
+        personalInfo1.setVideo2Url((video2Url == null ? "":video2Url));
+        personalInfo1.setMugShotImgUrl((mugShotImgUrl == null ? "":mugShotImgUrl));
+        personalInfo1.setHalfLengthImgUrl((halfLengthImgUrl == null ? "":halfLengthImgUrl));
+        personalInfo1.setFullBodyImgUrl((fullBodyImgUrl == null ? "" : fullBodyImgUrl));
 
         personalInfoMapper.updateByPrimaryKey(personalInfo1);
 

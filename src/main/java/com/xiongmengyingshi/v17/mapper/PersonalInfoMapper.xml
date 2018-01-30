@@ -55,7 +55,7 @@
   <select id="selectInfoIdByParam" resultType="java.lang.Integer">
     SELECT info_id
     FROM  v17_personal_info
-    WHERE info_name =#{name,jdbcType=VARCHAR} AND info_phone_num = #{phoneNum,jdbcType=VARCHAR}
+    WHERE info_phone_num = #{phoneNum,jdbcType=VARCHAR}
   </select>
 
   <select id="listPersonalInfoByPage" parameterType="map" resultMap="BaseResultMap">

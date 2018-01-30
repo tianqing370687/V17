@@ -12,7 +12,7 @@ public interface PersonalInfoService {
 
     String savePersonalInfo(PersonalInfo personalInfo);
 
-    Integer getPersonalInfoId(String name,String phoneNum);
+    Integer getPersonalInfoId(String phoneNum);
 
     void saveFileAndUpdateInfo(Integer userId, MultipartFile video1,
                                MultipartFile video2,MultipartFile mugShotImg,MultipartFile halfLengthImg,MultipartFile fullBodyImg);
